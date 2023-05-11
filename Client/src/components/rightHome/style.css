@@ -1,0 +1,113 @@
+.right_home {
+  display: flex;
+  flex-direction: column;
+  /* width: 55% !important; */
+  position: fixed;
+  left: 81.1vw;
+  color: white;
+  top: 0rem;
+  /* width: 18vw; */
+  width: 20%;
+  background: #131313;
+  height: 100vh;
+  border: 1px solid black;
+  overflow: scroll;
+}
+.right_home::-webkit-scrollbar {
+  width: 0;
+  background: #1c1b1c;
+}
+.right_home_close_button {
+  float: right;
+  transform: translateX(-10px);
+  margin-top: 10px;
+  font-size: 30px;
+}
+.heading {
+  font-size: 25px;
+  margin-top: 3.5rem;
+  transform: translateX(15px);
+  font-weight: 600 !important;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.playlist {
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  align-items: center;
+  gap: 50px;
+  margin: 20px 15px;
+}
+
+.playlist:hover .play_icon {
+  display: block;
+}
+
+.playlist_img {
+  object-fit: cover;
+  border-radius: 10px;
+}
+.playlist_img:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.playlist_info {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+.playlist_info p:first-of-type {
+  font-size: 18px;
+}
+.playlist_info p:last-of-type {
+  font-size: 14px;
+}
+
+.play_icon {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  /* font-size: 55px; */
+}
+@media (max-width: 1591px) {
+  .playlist {
+    gap: 5px;
+    padding: 1px;
+  }
+  .heading {
+    font-size: 22px;
+  }
+}
+@media (max-width: 1354px) {
+  .playlist_info p:first-of-type {
+    font-size: 14px;
+  }
+  .playlist_info p:last-of-type {
+    font-size: 12px;
+  }
+  .playlist_img {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+@media (max-width: 1248px) {
+  .heading {
+    font-size: 18px;
+  }
+}
+@media (max-width: 1088px) {
+  .heading {
+    font-size: 15px;
+  }
+}

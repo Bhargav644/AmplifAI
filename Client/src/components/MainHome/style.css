@@ -1,0 +1,105 @@
+.mainhome_wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white !important;
+  width: 100%;
+  padding: 20px 0;
+}
+@media (max-width: 1015px) {
+  .mainhome_wrap {
+    /* padding-left: 80px; */
+    width: 75vw;
+  }
+}
+
+.mainhome_heading {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.mainhome_out {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 0.7fr));
+  gap: 20px;
+}
+@media (max-width: 950px) {
+  .mainhome_out {
+    width: 100%;
+  }
+}
+/* .mainhome_out {
+  display: flex;
+  gap: 10px;
+  padding: 20px 10px;
+  color: white;
+} */
+
+.play {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  /* align-items: center; */
+  /* height: 190px; */
+  border-radius: 10px;
+  /* overflow: hidden; */
+  background-color: #1c1b1c;
+  padding: 5px 0px;
+  width: 170px;
+}
+.play:hover .play_icon {
+  display: block;
+  transition: all linear 3s;
+}
+.play_icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* transform: translate(-50%, -50%); */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+.play img {
+  margin: 10px 8px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  object-fit: cover;
+  align-items: center;
+  /* height: 150px; */
+  /* width: 150px; */
+}
+.play_name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+.play_name p {
+  padding: 0 10px;
+  /* text-align: left; */
+  white-space: nowrap;
+  /* width: 50px; */
+  text-overflow: ellipsis !important;
+  overflow: hidden;
+}
+.play_name p:first-of-type {
+  font-size: 16px;
+}
+.play_name p:last-of-type {
+  font-size: 14px;
+  color: #868686;
+}
+/* .mainhome_heading {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 30px;
+} */

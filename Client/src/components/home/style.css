@@ -1,0 +1,66 @@
+.home {
+  position: relative;
+  height: 100vh;
+  min-height: 100vh;
+  background-color: black;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  overflow: auto;
+  /* Optional: add a padding to prevent content from being obscured by the scrollbar */
+  /* padding-right: 15px; */
+}
+
+@media screen and (max-width: 1015px) {
+  .home {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .home {
+    grid-template-columns: 1fr;
+  }
+}
+
+.home::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.home_middle {
+  width: 60%;
+  top: 50px;
+  position: absolute;
+  left: 15%;
+  padding-bottom: 120px;
+}
+
+@media screen and (max-width: 1015px) {
+  .home_middle {
+    width: 80%;
+    left: 10%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .home_middle {
+    width: 90%;
+    /* left: 10% !important; */
+  }
+}
+
+.player {
+  /* z-index: ; */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 128px;
+  width: 100%;
+  background-color: black;
+}
+
+@media screen and (max-width: 700px) {
+  .player {
+    height: 80px;
+  }
+}
