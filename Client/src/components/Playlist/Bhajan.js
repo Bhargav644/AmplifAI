@@ -8,22 +8,24 @@ import { sadSong } from "../../data/playData";
 import { BiTime } from "react-icons/bi";
 import TestPlayer from "../../TestPlayer";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function Bhajan() {
+  const { tag } = useParams();
   const [songs, setSongs] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/songs/fear");
+        const response = await axios.get(`http://localhost:8000/tags/fear`);
         setSongs(response.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, []);
+  }, [tag]);
   // console.log(setSongs);
 
   return (

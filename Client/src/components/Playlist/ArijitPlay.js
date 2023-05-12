@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import Header from "../header";
-import TopHome from "../HomeMiddle";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { BsPlayFill } from "react-icons/bs";
-import { sadSong } from "../../data/playData";
 import { BiTime } from "react-icons/bi";
-import TestPlayer from "../../TestPlayer";
 import axios from "axios";
 
 function ArijitPlay() {
@@ -16,7 +12,7 @@ function ArijitPlay() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/arijit");
+        const response = await axios.get("http://localhost:8000/artist/arijit");
         setSongs(response.data);
       } catch (error) {
         console.log(error);

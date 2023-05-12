@@ -18,7 +18,7 @@ function Shreya() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/Shreya");
+        const response = await axios.get("http://localhost:8000/artist/Shreya");
         setSongs(response.data);
       } catch (error) {
         console.log(error);
