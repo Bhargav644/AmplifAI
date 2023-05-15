@@ -1,5 +1,7 @@
 const Songs = require("../models/songs")["model"];
-const generatePlaylist = require("../helper/helper")["generatePlaylist"];
+const generatePlaylist = require("../api/helper")["generatePlaylist"];
+const SongsAPI=require("../api/songs")
+
 
 const homeController = (req, res) => {
   res.status(200).json({ message: "It's server" });
@@ -9,9 +11,7 @@ const homeController = (req, res) => {
 const artistController = async (req, res) => {
   try {
     const artistKeyword = req.params.artist;
-    const artist_songs = await Songs.find({
-      artist_name: { $regex: artistKeyword, $options: "i" },
-    });
+    const artist_songs =await SongsAPI.getSongsByArtist(artistKeyword);
     if (artist_songs.length == 0) {
       res.status(404).json({ message: "Artist not found." });
     } else {
@@ -19,9 +19,7 @@ const artistController = async (req, res) => {
     }
   } catch (error) {
     console.error("Error:", error);
-    res
-      .status(500)
-      .json({ error: "An error occurred while retrieving songs." });
+    res.status(500).json({ error: "An error occurred while retrieving songs." });
   }
 };
 
@@ -29,10 +27,7 @@ const artistController = async (req, res) => {
 const songController = async (req, res) => {
   try {
     const songKeyword = req.params.song;
-
-    const songs = await Songs.find({
-      song_name: { $regex: songKeyword, $options: "i" },
-    });
+    const songs = await SongsAPI.getSongsByName(songKeyword);
     if (songs.length == 0) {
       res.status(404).json({ message: "Song not found." });
     } else {
@@ -52,9 +47,7 @@ const albumController = async (req, res) => {
     const albumKeyword = req.body.album;
 
     if (albumKeyword != undefined) {
-      const songs = await Songs.find({
-        album_name: { $regex: albumKeyword, $options: "i" },
-      });
+      const songs = await SongsAPI.getSongsByAlbum(albumKeyword);
       const albumName = songs[0].album_name;
       console.log(albumName);
       if (songs.length == 0) {
@@ -81,7 +74,7 @@ const tagController = async (req, res) => {
       tag: { $regex: songKeyword, $options: "i" },
     });
     if (songs.length == 0) {
-      res.status(404).json({ message: "Song not found." });
+      res.status(404).json({ message: "Tag not found." });
     } else {
       res.status(200).json(songs);
     }
