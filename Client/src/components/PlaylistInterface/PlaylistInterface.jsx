@@ -1,10 +1,8 @@
-import React from 'react'
-import "./PlaylistInterface.css"
+import React from "react";
+import "./PlaylistInterface.css";
 
 function PlaylistInterface() {
-  return (
-    <div style={{color:"white"}}>PlaylistInterface</div>
-  )
+  return <div style={{ color: "white" }}>PlaylistInterface</div>;
 }
 
-export default PlaylistInterface
+export default PlaylistInterface;

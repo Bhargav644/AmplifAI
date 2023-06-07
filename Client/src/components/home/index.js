@@ -6,6 +6,7 @@ import "./style.css";
 import MainHome from "../MainHome";
 import Player from "../Player/Player";
 import { AiOutlineMenu } from "react-icons/ai";
+import PlaylistInterface from "../PlaylistInterface/PlaylistInterface";
 
 export default function Home() {
   return (

@@ -106,7 +106,7 @@ const PlayerMain = ({
         <div className="player_wrap_image" style={{ color: "white" }}>
           <img src={currentSong.image_link} alt="" />
           <div className="title">
-            <p>{currentSong.songname}</p>
+            <p>{currentSong.song_name}</p>
             <p>{currentSong.artist_name}</p>
           </div>
         </div>
