@@ -85,7 +85,7 @@ const Player = (props) => {
   };
 
   return (
-    <div>
+    <>
       {currentSong && (
         <audio
           src={currentSong.song_url}
@@ -102,7 +102,7 @@ const Player = (props) => {
         currentSong={currentSong}
         setCurrentSong={setCurrentSong}
       />
-    </div>
+    </>
   );
 };
 

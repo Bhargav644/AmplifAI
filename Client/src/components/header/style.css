@@ -41,11 +41,11 @@ header {
     width: 45px;
   }
 }
-.header_top {
+/* .header_top {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 .header_top .logo_top {
   transform: translateY(35px);
   padding: 5px 0;
