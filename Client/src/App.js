@@ -1,19 +1,24 @@
 import "./App.css";
+import { useEffect, useState,createContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/home";
 import Player from "./components/Player/Player";
-import PlayerMain from "./components/Player/PlayerMain";
 import Header from "./components/header";
 
 import PlaylistInterface from "./components/PlaylistInterface/PlaylistInterface";
-import { useEffect, useState } from "react";
 import TopHome from "./components/HomeMiddle";
 import Search from "./Search";
 import Detector from "./components/Detector/Detector";
 import Login from "./components/Login/RegisterForm";
 
+
+
+export const currSongContext=createContext({});
 function App() {
   const [showRightHome, setShowRightHome] = useState(true);
+
+  const [currSong,setCurrSong]=useState(null);
+  const [currPlaylist,setCurrPlaylist]=useState(null);
 
   function toggleRightHome() {
     setShowRightHome(!showRightHome);
@@ -35,19 +40,23 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Header />
+      <currSongContext.Provider value={{currSong,setCurrSong,currPlaylist,setCurrPlaylist}}>
+          <Header />
 
-      <TopHome />
-      <Routes>
-        <Route path="/" element={<Home />} exact />
-        {/*<Route path="/player" element={<Player />} />*/}
+          <TopHome />
+          <Routes>
+            <Route path="/" element={<Home currSong={currSong} />} exact />
+            {/*<Route path="/player" element={<Player />} />*/}
 
-        <Route path="/premium" element={<Detector />} />
-        <Route path="/playlist/:id" element={<PlaylistInterface/>} />
+            <Route path="/premium" element={<Detector currSong={currSong} />} />
+            <Route path="/playlist/:id" element={<PlaylistInterface currSong={currSong}/>} />
 
-        <Route element={<Search />} />
-        {/*<Route path="/credential" element={<Login />} />*/}
-      </Routes>
+            {/*<Route path="/credential" element={<Login />} />*/}
+          </Routes>
+          {
+          (currSong!==null) &&
+          <Player currSong={currSong} />}
+      </currSongContext.Provider>
       {/* {showRightHome && <RightHome />} */}
     </div>
   );

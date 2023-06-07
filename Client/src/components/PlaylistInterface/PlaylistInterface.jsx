@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useContext} from 'react'
 import { useParams } from 'react-router-dom'
 import "./PlaylistInterface.css"
 import axios from 'axios';
@@ -6,9 +6,12 @@ import { encryptData,decryptData } from '../../helper/helper';
 import Loader from '../Loader/loader';
 import Player from '../Player/Player';
 import Songs from './Songs';
+import { currSongContext } from '../../App';
+
 
 function PlaylistInterface() {
 
+  const {currSong,setCurrSong,currPlaylist,setCurrPlaylist}=useContext(currSongContext);
   const {id}=useParams();
   const [songs,setSongs]=useState({});
   
@@ -20,6 +23,15 @@ function PlaylistInterface() {
     })
   }, [])
   
+
+  const runTheSong=(data)=>{
+    setCurrSong(data);
+  }
+
+  const runThePlaylist=(data)=>{
+    setCurrPlaylist(data);
+  }
+
 
   return (
     <>
@@ -54,7 +66,6 @@ function PlaylistInterface() {
         } 
       </div>
 
-      <Player/>
     </>
   )
 }

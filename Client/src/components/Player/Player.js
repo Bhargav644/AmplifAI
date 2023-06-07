@@ -1,24 +1,27 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect,useContext} from "react";
 import PlayerMain from "./PlayerMain";
 import axios from "axios";
+import { currSongContext } from "../../App";
 
 const Player = (props) => {
   const [songs, setSongs] = useState([]);
   const [isplaying, setisplaying] = useState(false);
   const [currentSong, setCurrentSong] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`/getAllSongs`);
-        setSongs(response.data);
-        setCurrentSong(response.data[0]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
+  const {currSong,setCurrSong,currPlaylist,setCurrPlaylist}=useContext(currSongContext);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get(`/getAllSongs`);
+  //       setSongs(response.data);
+  //       setCurrentSong(response.data[0]);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   const audioElem = useRef();
 
@@ -32,7 +35,7 @@ const Player = (props) => {
     }
   }, [isplaying]);
 
-  useEffect(() => {
+ useEffect(() => {
     if (!currentSong) {
       return;
     }
@@ -88,7 +91,7 @@ const Player = (props) => {
     <>
       {currentSong && (
         <audio
-          src={currentSong.song_url}
+          src={currSong.song_url}
           ref={audioElem}
           onTimeUpdate={onPlaying}
         />
