@@ -9,7 +9,35 @@
 @media (max-width: 1015px) {
   .mainhome_wrap {
     /* padding-left: 80px; */
-    width: 75vw;
+    width: 81vw;
+  }
+}
+
+@media (max-width: 680px) {
+  .mainhome_wrap {
+    /* padding-left: 80px; */
+    width: 81vw;
+    padding-left: 25px;
+  }
+}
+@media (max-width: 475px) {
+  .mainhome_wrap {
+    padding-left: 80px;
+  }
+}
+@media (max-width: 450px) {
+  .mainhome_wrap {
+    padding-left: 75px;
+  }
+}
+@media (max-width: 386px) {
+  .mainhome_wrap {
+    padding-left: 60px;
+  }
+}
+@media (max-width: 335px) {
+  .mainhome_wrap {
+    padding-left: 35px;
   }
 }
 

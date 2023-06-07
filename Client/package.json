@@ -1,6 +1,6 @@
 {
   "name": "music_player",
-  "proxy":"http://localhost:5500",
+  "proxy": "http://localhost:5500",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

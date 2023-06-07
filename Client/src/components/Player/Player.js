@@ -10,7 +10,7 @@ const Player = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`getAllSongs`);
+        const response = await axios.get(`/getAllSongs`);
         setSongs(response.data);
         setCurrentSong(response.data[0]);
       } catch (error) {
@@ -85,7 +85,7 @@ const Player = (props) => {
   };
 
   return (
-    <div>
+    <>
       {currentSong && (
         <audio
           src={currentSong.song_url}
@@ -102,7 +102,7 @@ const Player = (props) => {
         currentSong={currentSong}
         setCurrentSong={setCurrentSong}
       />
-    </div>
+    </>
   );
 };
 
