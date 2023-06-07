@@ -1,8 +1,12 @@
 const Songs = require("../models/songs")["model"];
 const generatePlaylist = require("../api/helper")["generatePlaylist"];
+<<<<<<< HEAD
 const SongsAPI=require("../api/songs");
 const Playlist = require("../models/playlist")['model'];
 
+=======
+const SongsAPI = require("../api/songs");
+>>>>>>> 2eba741c11143f4dd5041979dd562a7b870831de
 
 const homeController = (req, res) => {
   res.status(200).json({ message: "It's server" });
@@ -12,7 +16,7 @@ const homeController = (req, res) => {
 const artistController = async (req, res) => {
   try {
     const artistKeyword = req.params.artist;
-    const artist_songs =await SongsAPI.getSongsByArtist(artistKeyword);
+    const artist_songs = await SongsAPI.getSongsByArtist(artistKeyword);
     if (artist_songs.length == 0) {
       res.status(404).json({ message: "Artist not found." });
     } else {
@@ -20,7 +24,9 @@ const artistController = async (req, res) => {
     }
   } catch (error) {
     console.error("Error:", error);
-    res.status(500).json({ error: "An error occurred while retrieving songs." });
+    res
+      .status(500)
+      .json({ error: "An error occurred while retrieving songs." });
   }
 };
 

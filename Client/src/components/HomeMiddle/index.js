@@ -64,9 +64,12 @@ export default function TopHome() {
         <AiOutlineBell />
         <div className="right_notification"></div>
       </div>
-      <Link to="/profile" className="account">
+      {/*<Link to="/profile" className="account">
         <img src={logo1} alt="" />
         <span>Chetan Sharma</span>
+  </Link>*/}
+      <Link to="/credential" className="account">
+        <span>SingUp</span>
       </Link>
       <div className={`circle_icon ${showUserMenu}`}>
         <div

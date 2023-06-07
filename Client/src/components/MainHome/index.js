@@ -66,6 +66,20 @@ export default function MainHome() {
             title="Top Pritam Songs Ever"
           />
         </Link>
+        <Link to="/pritam">
+          <Playlist
+            image="https://i.scdn.co/image/ab67616d0000b273daa89593cc2cde9651665d03"
+            tag="Pritam Album Songs"
+            title="Top Pritam Songs Ever"
+          />
+        </Link>
+        <Link to="/pritam">
+          <Playlist
+            image="https://i.scdn.co/image/ab67616d0000b273daa89593cc2cde9651665d03"
+            tag="Pritam Album Songs"
+            title="Top Pritam Songs Ever"
+          />
+        </Link>
       </div>
     </div>
   );
