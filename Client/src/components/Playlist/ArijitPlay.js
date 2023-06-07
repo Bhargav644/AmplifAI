@@ -12,7 +12,7 @@ function ArijitPlay() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/artist/arijit");
+        const response = await axios.get("/artist/arijit");
         setSongs(response.data);
       } catch (error) {
         console.log(error);

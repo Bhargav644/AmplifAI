@@ -1,22 +1,22 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
 import Playlist from "./Playlist";
 import axios from "axios";
 
-
 export default function MainHome() {
+  const [playlist, setPlaylist] = useState([]);
 
-  const [playlist,setPlaylist]=useState([]);
-
-  useEffect(()=>{
-    axios.get("/getPlaylist").then((res)=>{
-      console.log(res.data);
-    }).catch((err)=>{
-      console.log(err.message);
-    })
-  },[]);
-
+  useEffect(() => {
+    axios
+      .get("/getPlaylist")
+      .then((res) => {
+        // console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
 
   return (
     <div className="mainhome_wrap">

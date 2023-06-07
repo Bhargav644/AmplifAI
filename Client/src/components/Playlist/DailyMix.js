@@ -16,7 +16,7 @@ function Bhajan() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/getAllSongs");
+        const response = await axios.get("/getAllSongs");
         setSongs(response.data);
       } catch (error) {
         console.log(error);

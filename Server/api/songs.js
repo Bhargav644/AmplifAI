@@ -1,16 +1,15 @@
 const Songs = require("../models/songs")["model"];
-class SongsAPI{
-    async getSongsByArtist(keyword){
-        try{
-            const artist_songs = await Songs.find({
-                artist_name: { $regex: keyword, $options: "i" },
-            });
-            return artist_songs;
-        }
-        catch(err){
-            throw new Error(err.message);
-        }
+class SongsAPI {
+  async getSongsByArtist(keyword) {
+    try {
+      const artist_songs = await Songs.find({
+        artist_name: { $regex: keyword, $options: "i" },
+      });
+      return artist_songs;
+    } catch (err) {
+      throw new Error(err.message);
     }
+  }
   async getSongsByAlbum(keyword) {
     try {
       const album_songs = await Songs.find({
@@ -22,16 +21,15 @@ class SongsAPI{
     }
   }
 
-  async getSongsByTag(keyword){
-      try{
-          const tag_songs= await Songs.find({
-              tag: { $regex: songKeyword, $options: "i" },
-            });
-          return tag_songs;
-      }
-      catch(err){
-          throw new Error(err.message);
-      }
+  async getSongsByTag(keyword) {
+    try {
+      const tag_songs = await Songs.find({
+        tag: { $regex: songKeyword, $options: "i" },
+      });
+      return tag_songs;
+    } catch (err) {
+      throw new Error(err.message);
+    }
   }
 }
 

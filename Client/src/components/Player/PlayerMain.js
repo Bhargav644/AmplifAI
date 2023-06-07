@@ -10,6 +10,7 @@ import {
   BsRepeat,
 } from "react-icons/bs";
 import { BiRepeat } from "react-icons/bi";
+import { RiPlayListLine } from "react-icons/ri";
 
 const PlayerMain = ({
   audioElem,
