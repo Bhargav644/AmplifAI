@@ -7,22 +7,24 @@ import Loader from '../Loader/loader';
 import Player from '../Player/Player';
 import Songs from './Songs';
 import { currSongContext } from '../../App';
-
+import { BiTime } from "react-icons/bi";
 
 function PlaylistInterface() {
+  const { id } = useParams();
+  const [songs, setSongs] = useState({});
 
   const {currSong,setCurrSong,currPlaylist,setCurrPlaylist}=useContext(currSongContext);
-  const {id}=useParams();
-  const [songs,setSongs]=useState({});
+
   
   useEffect(() => {
-      axios.get(`/getPlaylist/${id}`).then((res)=>{
-          setSongs(res.data[0]);
-          console.log(res.data[0]);
-      }).catch((err)=>{
-    })
-  }, [])
-  
+    axios
+      .get(`/getPlaylist/${id}`)
+      .then((res) => {
+        setSongs(res.data[0]);
+        console.log(res.data[0]);
+      })
+      .catch((err) => {});
+  }, []);
 
   const runTheSong=(data)=>{
     setCurrSong(data);
