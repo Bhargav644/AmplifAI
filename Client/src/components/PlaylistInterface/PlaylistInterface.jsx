@@ -1,25 +1,26 @@
-import React,{useEffect,useState} from 'react'
-import { useParams } from 'react-router-dom'
-import "./PlaylistInterface.css"
-import axios from 'axios';
-import { encryptData,decryptData } from '../../helper/helper';
-import Loader from '../Loader/loader';
-import Player from '../Player/Player';
-import Songs from './Songs';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import "./PlaylistInterface.css";
+import axios from "axios";
+import { encryptData, decryptData } from "../../helper/helper";
+import Loader from "../Loader/loader";
+import Player from "../Player/Player";
+import Songs from "./Songs";
+import { BiTime } from "react-icons/bi";
 
 function PlaylistInterface() {
+  const { id } = useParams();
+  const [songs, setSongs] = useState({});
 
-  const {id}=useParams();
-  const [songs,setSongs]=useState({});
-  
   useEffect(() => {
-      axios.get(`/getPlaylist/${id}`).then((res)=>{
-          setSongs(res.data[0]);
-          console.log(res.data[0]);
-      }).catch((err)=>{
-    })
-  }, [])
-  
+    axios
+      .get(`/getPlaylist/${id}`)
+      .then((res) => {
+        setSongs(res.data[0]);
+        console.log(res.data[0]);
+      })
+      .catch((err) => {});
+  }, []);
 
   return (
     <>
@@ -68,7 +69,7 @@ function PlaylistInterface() {
         )}
       </div>
 
-      <Player/>
+      <Player />
     </>
   );
 }
