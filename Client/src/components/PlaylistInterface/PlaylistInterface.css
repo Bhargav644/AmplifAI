@@ -1,14 +1,18 @@
 .plylist-interface{
-    width:400px !important;
-    left: 40%;
-    position: absolute !important;
-    height:400px !important;
     background-color: black !important;
 }
 
 .playlist-header{
     display: flex;
     background-color: black ;
+}
+.playlist-main{
+    width:92%;
+    height: 80vh;
+    padding:20px;
+    position: absolute;
+    left:8%;
+    background-color: black;
 }
 .loader_div{
     /* display: flex; */
@@ -19,7 +23,28 @@
     background-color: black;
 }
 
-.playlist-image{
-    width: 50%;
-    height:50%;
+.playlist-img{
+    width: 300px !important;
+    height:300px !important;
+}
+.playlist-tag{
+    font-size: 18px;
+    transform: translateX(20px);
+}
+.playlist-name{
+    font-size: 80px;
+    font-weight: 800 !important;
+    transform: translateX(20px);
+}
+
+.song-main{
+    display: flex;
+    height:40px;
+    margin:5px;
+    gap:60px;
+}
+
+.songIMG{
+    width:50px !important;
+    height:50px !important;
 }

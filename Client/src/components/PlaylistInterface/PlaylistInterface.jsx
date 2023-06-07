@@ -5,6 +5,7 @@ import axios from 'axios';
 import { encryptData,decryptData } from '../../helper/helper';
 import Loader from '../Loader/loader';
 import Player from '../Player/Player';
+import Songs from './Songs';
 
 function PlaylistInterface() {
 
@@ -13,7 +14,7 @@ function PlaylistInterface() {
   
   useEffect(() => {
       axios.get(`/getPlaylist/${id}`).then((res)=>{
-          setSongs(res.data);
+          setSongs(res.data[0]);
           console.log(res.data[0]);
       }).catch((err)=>{
     })
@@ -24,22 +25,33 @@ function PlaylistInterface() {
     <>
       <div className='playlist-interface'>
 
-        {/* {Object.keys(songs).length>0 ? (
-          <>
+         {Object.keys(songs).length>0 ? (
+          <div className='playlist-main'>
             <div className="playlist-header">
                 <div className="playlist-image">
-                  <img src={songs[0].playlist_songs[0].image_link}/>
+                  <img className='playlist-img' src={songs.playlist_songs[0].image_link}/>
+                </div>
+                <div>
+                  <p className='playlist-tag'>Public Playlist</p>
+                  <br/>
+                  <p className='playlist-name'>
+                    {songs.playlist_name}
+                  </p>
                 </div>
             </div>
             <div className="playlist-songs">
-
+                  {
+                     songs.playlist_songs.map((val,index)=>{
+                       return <Songs song={val} id={index+1}/>
+                     })
+                  }
             </div>
-          </>
-        ): */}
+          </div>
+        ): 
         <div className='loader_div'>
           <Loader/>
         </div>
-        {/* } */}
+        } 
       </div>
 
       <Player/>
