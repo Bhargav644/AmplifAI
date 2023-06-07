@@ -35,9 +35,8 @@ export default function Home() {
       <div className="home_middle">
         <MainHome />
       </div>
-      {/*{showRightHome && <RightHome />}
-      Bottom Player*/}
-      <Player />
+      {/*{showRightHome && <RightHome /> /*Bottom Player*/}
+      {/* <Player /> */}
     </div>
   );
 }

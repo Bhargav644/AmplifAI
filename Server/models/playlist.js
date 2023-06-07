@@ -8,7 +8,7 @@ const playlistSchema=new mongoose.Schema({
     playlist_name:String,
     playlist_songs:[songSchema]
     
-},{ collection: 'Songs' });
+},{ collection: 'playlists' });
 
 const Playlists=new mongoose.model("playlists",playlistSchema)
 

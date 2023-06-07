@@ -119,5 +119,5 @@ module.exports = {
   albumController: albumController,
   tagController: tagController,
   allSongController: allSongController,
-  allPlaylistController:allPlaylistController
+  allPlaylistController:allPlaylistController,
 };

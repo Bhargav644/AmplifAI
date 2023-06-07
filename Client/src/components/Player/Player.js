@@ -10,7 +10,7 @@ const Player = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/getAllSongs`);
+        const response = await axios.get(`getAllSongs`);
         setSongs(response.data);
         setCurrentSong(response.data[0]);
       } catch (error) {
