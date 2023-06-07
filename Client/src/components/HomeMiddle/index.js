@@ -62,7 +62,6 @@ export default function TopHome() {
       </div>
       <div className="middle_account_notify">
         <AiOutlineBell />
-        <div className="right_notification"></div>
       </div>
       {/*<Link to="/profile" className="account">
         <img src={logo1} alt="" />
