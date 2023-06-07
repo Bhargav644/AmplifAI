@@ -112,6 +112,20 @@ const allPlaylistController=async(req,res)=>{
   }
 }
 
+
+const getPlaylistById=async(req,res)=>{
+  const id=req.params.id;
+  try{
+    const playlist=await Playlist.find({'_id':id});
+    res.status(200).json(playlist);
+  }
+  catch(error){
+    res
+      .status(500)
+      .json({ error: "An error occurred while retrieving playlists." });
+  }
+}
+
 module.exports = {
   homeController: homeController,
   songController: songController,
@@ -120,4 +134,5 @@ module.exports = {
   tagController: tagController,
   allSongController: allSongController,
   allPlaylistController:allPlaylistController,
+  getPlaylistById:getPlaylistById,
 };
