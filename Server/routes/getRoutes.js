@@ -6,6 +6,7 @@ const songController = controllers["songController"];
 const artistController = controllers["artistController"];
 const tagController = controllers["tagController"];
 const getSongController = controllers["allSongController"];
+const getPlaylistController = controllers["allPlaylistController"];
 
 function routes() {
   app.get("/", homeController);
@@ -13,6 +14,7 @@ function routes() {
   app.get("/song/:song", songController);
   app.get("/tags/:tag", tagController);
   app.get("/getAllSongs", getSongController);
+  app.get("/getPlaylist", getPlaylistController);
 }
 
 module.exports = routes;

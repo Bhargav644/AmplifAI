@@ -57,7 +57,7 @@ function App() {
         <Route path="/premium" element={<Detector />} />
         <Route element={<Search />} />
       </Routes>
-      {showRightHome && <RightHome />}
+      {/* {showRightHome && <RightHome />} */}
     </div>
   );
 }

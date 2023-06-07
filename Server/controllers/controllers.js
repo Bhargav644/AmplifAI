@@ -1,6 +1,7 @@
 const Songs = require("../models/songs")["model"];
 const generatePlaylist = require("../api/helper")["generatePlaylist"];
-const SongsAPI=require("../api/songs")
+const SongsAPI=require("../api/songs");
+const Playlist = require("../models/playlist")['model'];
 
 
 const homeController = (req, res) => {
@@ -70,9 +71,7 @@ const tagController = async (req, res) => {
   try {
     const songKeyword = req.params.tag;
 
-    const songs = await Songs.find({
-      tag: { $regex: songKeyword, $options: "i" },
-    });
+    const songs = await SongsAPI.getSongsByTag(songKeyword);
     if (songs.length == 0) {
       res.status(404).json({ message: "Tag not found." });
     } else {
@@ -85,6 +84,7 @@ const tagController = async (req, res) => {
       .json({ error: "An error occurred while retrieving songs." });
   }
 };
+
 /** Finds the requested tag */
 const allSongController = async (req, res) => {
   try {
@@ -99,6 +99,18 @@ const allSongController = async (req, res) => {
   }
 };
 
+const allPlaylistController=async(req,res)=>{
+  try{
+    const playlists=await Playlist.find();
+    res.status(200).json(playlists);
+  }
+  catch(error){
+    res
+      .status(500)
+      .json({ error: "An error occurred while retrieving playlists." });
+  }
+}
+
 module.exports = {
   homeController: homeController,
   songController: songController,
@@ -106,4 +118,5 @@ module.exports = {
   albumController: albumController,
   tagController: tagController,
   allSongController: allSongController,
+  allPlaylistController:allPlaylistController
 };
