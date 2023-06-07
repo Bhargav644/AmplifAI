@@ -43,6 +43,7 @@
   border-radius: 10px;
   overflow: hidden;
   flex-grow: 1;
+  padding-left: 10px;
 }
 
 .middle_input {

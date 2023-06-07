@@ -17,11 +17,11 @@ import RightHome from "../rightHome";
 import { TfiHandPointLeft } from "react-icons/tfi";
 
 export default function Header(props) {
-  const [showRightHome, setShowRightHome] = useState(false);
+  // const [showRightHome, setShowRightHome] = useState(false);
 
-  const handleRightHomeToggle = () => {
-    setShowRightHome(!showRightHome);
-  };
+  // const handleRightHomeToggle = () => {
+  //   setShowRightHome(!showRightHome);
+  // };
   return (
     <header>
       <div className="header_top">
@@ -46,7 +46,7 @@ export default function Header(props) {
         <Link className="middle_icon">
           <RiPlayListFill
             style={{ fontSize: "25px" }}
-            onClick={handleRightHomeToggle}
+            // onClick={handleRightHomeToggle}
           />
         </Link>
         <Link to="/" className="middle_icon">
@@ -59,7 +59,7 @@ export default function Header(props) {
           />
         </Link>
       </div>
-      {showRightHome && <RightHome />}
+      {/*{showRightHome && <RightHome />}*/}
     </header>
   );
 }

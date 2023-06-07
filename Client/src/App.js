@@ -43,7 +43,7 @@ function App() {
         {/*<Route path="/player" element={<Player />} />*/}
 
         <Route path="/premium" element={<Detector />} />
-        <Route path="/playlist/Lid" element={<PlaylistInterface/>} />
+        <Route path="/playlist/Lid" element={<PlaylistInterface />} />
 
         <Route element={<Search />} />
         {/*<Route path="/credential" element={<Login />} />*/}

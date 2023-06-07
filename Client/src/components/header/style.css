@@ -47,13 +47,17 @@ header {
   align-items: center;
 } */
 .header_top .logo_top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   transform: translateY(35px);
   padding: 5px 0;
 }
 .logo_top img {
-  height: 75px;
-  width: 150px;
-  scale: 0.6;
+  height: 70px;
+  width: 75px !important;
+  /* scale: 0.6; */
 }
 .header_middle {
   display: flex;
@@ -126,7 +130,19 @@ header {
 }
 @media (max-width: 798px) {
   .logo_top img {
-    width: 100px;
-    height: 70px;
+    height: 50px;
+    width: 60px;
+  }
+}
+@media (max-width: 680px) {
+  .logo_top img {
+    height: 40px;
+    width: 50px !important;
+  }
+}
+@media (max-width: 475px) {
+  .logo_top img {
+    height: 40px;
+    width: 40px !important;
   }
 }

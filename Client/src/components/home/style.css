@@ -31,14 +31,14 @@
   width: 75% !important;
   top: 50px;
   position: absolute;
-  left: 35%;
+  left: 17%;
   padding-bottom: 120px;
 }
 
 @media screen and (max-width: 1015px) {
   .home_middle {
     width: 80%;
-    left: 10%;
+    left: 15%;
   }
 }
 
