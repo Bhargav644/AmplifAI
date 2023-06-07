@@ -1,38 +1,25 @@
-import React from 'react'
+import React from "react";
 
 function Songs(props) {
-  const data=props.song;
-  const id=props.id;
+  const data = props.song;
+  const id = props.id;
   return (
-    <div className='song-main' >
+    <tr className="song-main">
+      <a id={data._id} hidden>
+        {data.song_url}
+      </a>
 
-        <a id={data._id} hidden>{data.song_url}</a>
-
-        <div className='song-sno'>
-            {id}
-        </div>
-
-        <div className='song-img'>
-            <img className='songIMG' src={data.image_link}  />
-        </div>
-
-        <div className='song-detail'>
-            <p>{data.song_name}</p>
-            <p>{data.artist_name}</p>
-        </div>
-        <div className='song-album'>
-            {data.album_name}
-        </div>
-        <div className='song-release-date'>
-            {data.release_date}
-        </div>
-
-        <div className='song-duration'>
-            {data.duration_m}
-        </div>
-
-    </div>
-  )
+      <td style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        {id}
+        <img className="songIMG" src={data.image_link} alt={data.song_name} />
+      </td>
+      <td>{data.song_name}</td>
+      <td>{data.artist_name}</td>
+      <td>{data.album_name}</td>
+      <td>{data.release_date}</td>
+      <td>{data.duration_m}</td>
+    </tr>
+  );
 }
 
 export default Songs;
