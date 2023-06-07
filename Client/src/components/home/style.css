@@ -28,10 +28,10 @@
 }
 
 .home_middle {
-  width: 60%;
+  width: 75% !important;
   top: 50px;
   position: absolute;
-  left: 15%;
+  left: 35%;
   padding-bottom: 120px;
 }
 

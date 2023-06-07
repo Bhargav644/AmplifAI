@@ -1,0 +1,148 @@
+/* * {
+  color: black;
+} */
+.register {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #131313;
+  color: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 15px;
+
+  padding-bottom: 1rem;
+  width: 350px;
+  height: fit-content;
+}
+.register_header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e4e6eb;
+}
+.register_header i {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+.register_header span:first-of-type {
+  font-weight: 700;
+  font-size: 32px;
+}
+.register_header span:last-of-type {
+  font-size: 15px;
+  color: rgb(155, 155, 155);
+}
+.register_form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 14px;
+}
+.reg_line {
+  padding: 7px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.reg_line input {
+  color: black;
+}
+.reg_col {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-self: flex-start;
+  margin-bottom: 10px;
+  gap: 5px;
+  padding: 5px 5px;
+}
+.reg_line_header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: white;
+}
+.reg_line_header i {
+  margin-top: 3px;
+}
+.reg_grid {
+  margin-top: 5px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  height: 35px;
+  width: 100%;
+}
+.reg_grid select {
+  width: 90px;
+  font-size: 16px;
+  color: #fff;
+  background: #131313;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.reg_grid label {
+  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #65676b;
+  padding: 0 10px;
+}
+.reg_infos {
+  font-size: 11px;
+  text-align: center;
+  margin-top: 10px;
+  color: #65676b;
+}
+.reg_infos span {
+  color: green;
+}
+.reg_btn_wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0 10px 0;
+}
+.black_btn {
+  border: none;
+  outline: none;
+  background: green;
+  padding: 8.5px 12px;
+  border-radius: 7px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.register_input_wrap {
+  width: 100% !important;
+}
+.register_input_wrap input {
+  background: white;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  font-size: 16px;
+}
+input:focus {
+  outline: none;
+}

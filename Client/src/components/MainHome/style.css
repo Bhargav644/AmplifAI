@@ -21,7 +21,7 @@
 
 .mainhome_out {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 0.7fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 0.7fr));
   gap: 20px;
 }
 @media (max-width: 950px) {

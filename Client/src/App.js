@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import TopHome from "./components/HomeMiddle";
 import Search from "./Search";
 import Detector from "./components/Detector/Detector";
+import Login from "./components/Login/RegisterForm";
 
 function App() {
   const [showRightHome, setShowRightHome] = useState(true);
@@ -55,9 +56,10 @@ function App() {
         <Route path="/dailyMix1" element={<DailyMix />} />
         <Route path="/pritam" element={<Pritam />} />
         <Route path="/premium" element={<Detector />} />
+
         <Route element={<Search />} />
+        {/*<Route path="/credential" element={<Login />} />*/}
       </Routes>
-      {showRightHome && <RightHome />}
     </div>
   );
 }
