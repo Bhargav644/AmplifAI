@@ -1,6 +1,7 @@
 .player_wrap {
   position: fixed;
   bottom: 0;
+  /* height: 50px; */
   z-index: 999999999;
   display: flex;
   flex-wrap: wrap;
