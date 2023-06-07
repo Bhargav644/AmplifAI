@@ -3,8 +3,8 @@
   height: 100vh;
   min-height: 100vh;
   background-color: black;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* display: grid; */
+  /* grid-template-columns: repeat(3, 3fr); */
   overflow: auto;
   /* Optional: add a padding to prevent content from being obscured by the scrollbar */
   /* padding-right: 15px; */
@@ -31,7 +31,7 @@
   width: 75% !important;
   top: 50px;
   position: absolute;
-  left: 35%;
+  left: 17%;
   padding-bottom: 120px;
 }
 

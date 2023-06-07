@@ -1,0 +1,25 @@
+.plylist-interface{
+    width:400px !important;
+    left: 40%;
+    position: absolute !important;
+    height:400px !important;
+    background-color: black !important;
+}
+
+.playlist-header{
+    display: flex;
+    background-color: black ;
+}
+.loader_div{
+    /* display: flex; */
+    height: 80vh;
+    width:100%;
+    position: relative;
+    margin: auto;
+    background-color: black;
+}
+
+.playlist-image{
+    width: 50%;
+    height:50%;
+}

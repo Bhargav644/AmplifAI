@@ -1,0 +1,17 @@
+.loader_image{
+    position: absolute;
+    top: 35%;
+    left:52%;
+    transform: translate(-30%,-30%);
+}
+.limg{
+    width: 120px;
+    height:80px;
+}
+@media only screen and (max-width: 500px) { 
+    .limg{
+        width: 70px;
+        height:50px;
+    }
+}
+

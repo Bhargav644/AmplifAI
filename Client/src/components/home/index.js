@@ -14,7 +14,7 @@ export default function Home() {
         <MainHome />
       </div>
       {/*{showRightHome && <RightHome /> /*Bottom Player*/}
-      {/* <Player /> */}
+      <Player />
     </div>
   );
 }
