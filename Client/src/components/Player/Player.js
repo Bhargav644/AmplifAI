@@ -97,8 +97,8 @@ const Player = (props) => {
         />
       )}
       <PlayerMain
-        songs={songs}
-        setSongs={setSongs}
+        songs={currPlaylist}
+        setSongs={setCurrPlaylist}
         isplaying={isplaying}
         setisplaying={setisplaying}
         audioElem={audioElem}
