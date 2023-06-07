@@ -304,9 +304,7 @@
   z-index: 999999999999999999999999999;
   background-image: linear-gradient(to top, to bottom, black, #1c1b1c);
 }
-.search_results {
-  /* transform: translateY(150px); */
-}
+
 .search_results ul {
   list-style: none;
 }
