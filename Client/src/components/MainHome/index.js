@@ -1,12 +1,23 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import "./style.css";
-import { moodPlaylist } from "../../data/playData";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Playlist from "./Playlist";
-import Sad from "../Playlist/Sad";
-import ArijitPlay from "../Playlist/ArijitPlay";
+import axios from "axios";
+
 
 export default function MainHome() {
+
+  const [playlist,setPlaylist]=useState([]);
+
+  useEffect(()=>{
+    axios.get("/getPlaylist").then((res)=>{
+      console.log(res.data);
+    }).catch((err)=>{
+      console.log(err.message);
+    })
+  },[]);
+
+
   return (
     <div className="mainhome_wrap">
       <div className="mainhome_heading">

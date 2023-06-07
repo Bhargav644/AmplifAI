@@ -28,7 +28,7 @@
 }
 
 .home_middle {
-  width: 60%;
+  width: 65% !important;
   top: 50px;
   position: absolute;
   left: 15%;
