@@ -60,10 +60,7 @@ function App() {
         <Route element={<Search />} />
         {/*<Route path="/credential" element={<Login />} />*/}
       </Routes>
-<<<<<<< HEAD
       {/* {showRightHome && <RightHome />} */}
-=======
->>>>>>> 2eba741c11143f4dd5041979dd562a7b870831de
     </div>
   );
 }
