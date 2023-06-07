@@ -49,15 +49,14 @@
   }
 }
 
-.player {
-  /* z-index: ; */
+/* .player {
   position: fixed;
   bottom: 0;
   left: 0;
   height: 128px;
   width: 100%;
   background-color: black;
-}
+} */
 
 @media screen and (max-width: 700px) {
   .player {
