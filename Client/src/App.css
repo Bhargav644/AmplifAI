@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
 
 .App {
   height: 100% !important;
-  background-color: black;
+  background-color: black !important;
 }
 
-
-*{
-  font-family: 'Roboto Slab', serif !important;
+* {
+  font-family: "Roboto Slab", serif !important;
 }

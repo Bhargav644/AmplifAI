@@ -59,4 +59,4 @@ function PlaylistInterface() {
   )
 }
 
-export default PlaylistInterface
+export default PlaylistInterface;

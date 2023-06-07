@@ -7,23 +7,23 @@ import axios from "axios";
 export default function MainHome() {
   const [playlist, setPlaylist] = useState([]);
 
-  useEffect(()=>{
-    axios.get("/getPlaylist").then((res)=>{
-      setPlaylist(res.data);
-    }).catch((err)=>{
-      console.log(err.message);
-    })
-  },[]);
-
+  useEffect(() => {
+    axios
+      .get("/getPlaylist")
+      .then((res) => {
+        setPlaylist(res.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
 
   return (
     <div className="mainhome_wrap">
-      <div className="mainhome_heading">
-      Recommended Playlists:
-      </div>
+      <div className="mainhome_heading">Recommended Playlists:</div>
       <div className="mainhome_out">
-        {Object.keys(playlist).map((key,idx)=>{
-          const list=playlist[key];
+        {Object.keys(playlist).map((key, idx) => {
+          const list = playlist[key];
           return (
             <Link to={`/playlist/${list._id}`}>
               <Playlist
@@ -31,7 +31,7 @@ export default function MainHome() {
                 tag={list.playlist_name}
               />
             </Link>
-          )
+          );
         })}
       </div>
     </div>
