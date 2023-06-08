@@ -1,10 +1,19 @@
 import * as faceapi from "face-api.js";
-import React from "react";
-import "./style.css";
+import React,{useEffect, useState} from "react";
+import "./Detector.css";
+import axios from "axios";
+import PlaylistSection from "./PlaylistSection";
 
 function Detector() {
   const [modelsLoaded, setModelsLoaded] = React.useState(false);
+  const [emotions,setEmotions]=useState({
+    'emotion_type':"",
+    'emotion_dominance':null
+  });
+
+  const [emotionPlaylists,setEmotionPlaylists] = useState();
   const [captureVideo, setCaptureVideo] = React.useState(false);
+  const [isHandleVideoEnded, setIsHandleVideoEnded] = useState(false);
 
   const videoRef = React.useRef();
   const videoHeight = 480;
@@ -39,7 +48,20 @@ function Detector() {
       });
   };
 
-  const handleVideoOnPlay = () => {
+  const callForAPI = (emotions) => {
+    console.log(emotions)
+    axios.post('/getEmotionPlaylist',{"emotion":emotions.emotion_type}).then((res)=>{
+      setEmotionPlaylists(res.data);
+    });
+
+  }
+  React.useEffect(() => {
+    if (isHandleVideoEnded && emotions.emotion_type !== "") {
+      callForAPI(emotions);
+    }
+  }, [isHandleVideoEnded]);
+
+  const handleVideoOnPlay = async() => {
     const interval = setInterval(async () => {
       if (canvasRef && canvasRef.current) {
         canvasRef.current.innerHTML = faceapi.createCanvasFromMedia(
@@ -64,6 +86,16 @@ function Detector() {
           detections,
           displaySize
         );
+        // console.log(detections[0])
+        const expressions = detections[0].expressions;
+        const maxExpression = Math.max(...Object.values(expressions));
+        console.log(maxExpression)
+        const dominantEmotion = Object.keys(expressions).find(
+          (key) => expressions[key] === maxExpression
+        );
+        
+        setEmotions((prev)=>({...prev,emotion_dominance: maxExpression}));
+        setEmotions((prev)=>({...prev,emotion_type: dominantEmotion}));
 
         canvasRef &&
           canvasRef.current &&
@@ -89,7 +121,10 @@ function Detector() {
     setTimeout(() => {
       // console.log("Hello")
       clearInterval(interval);
+      closeWebcam();
+      setIsHandleVideoEnded(true);
     }, 5000);
+
   };
 
   const closeWebcam = () => {
@@ -101,36 +136,23 @@ function Detector() {
   return (
     <div>
       <div style={{ textAlign: "center", padding: "10px" }}>
-        {captureVideo && modelsLoaded ? (
-          <button
-            onClick={closeWebcam}
-            style={{
-              cursor: "pointer",
-              backgroundColor: "green",
-              color: "white",
-              padding: "15px",
-              fontSize: "25px",
-              border: "none",
-              borderRadius: "10px",
-            }}
-          >
-            Close Webcam
-          </button>
+        {emotions.emotion_type!=="" && modelsLoaded && emotionPlaylists ? (
+          <div className="playlist-middle">
+            <PlaylistSection playlist={emotionPlaylists}/>
+          </div>
         ) : (
-          <button
-            onClick={startVideo}
-            style={{
-              cursor: "pointer",
-              backgroundColor: "green",
-              color: "white",
-              padding: "15px",
-              fontSize: "25px",
-              border: "none",
-              borderRadius: "10px",
-            }}
-          >
-            Open Webcam
-          </button>
+          <>
+            <span className="webcam-text">
+              For this feature you have to
+            </span>
+            <button
+              onClick={startVideo}
+              className="button"
+              style={{backgroundColor:"green",border:"1px solid green"}}
+            >
+              Open Webcam
+            </button>
+          </>
         )}
       </div>
       {captureVideo ? (

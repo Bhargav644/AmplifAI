@@ -10,13 +10,14 @@ import TopHome from "./components/HomeMiddle";
 import Search from "./Search";
 import Detector from "./components/Detector/Detector";
 import Login from "./components/Login/RegisterForm";
+import Premium from "./components/Detector/Premium";
 
 export const currSongContext = createContext({});
 function App() {
   const [showRightHome, setShowRightHome] = useState(true);
 
   const [currSong, setCurrSong] = useState(null);
-  const [currPlaylist, setCurrPlaylist] = useState(null);
+  const [currPlaylist, setCurrPlaylist] = useState([]);
 
   function toggleRightHome() {
     setShowRightHome(!showRightHome);
@@ -48,7 +49,8 @@ function App() {
           <Route path="/" element={<Home currSong={currSong} />} exact />
           {/*<Route path="/player" element={<Player />} />*/}
 
-          <Route path="/premium" element={<Detector currSong={currSong} />} />
+          <Route exact path="/premium" element={<Premium currSong={currSong} />} />
+          <Route exact path="/premium/detector" element={<Detector currSong={currSong} />} />
           <Route
             path="/playlist/:id"
             element={<PlaylistInterface currSong={currSong} />}

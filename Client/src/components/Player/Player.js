@@ -4,24 +4,18 @@ import axios from "axios";
 import { currSongContext } from "../../App";
 
 const Player = (props) => {
-  const [songs, setSongs] = useState([]);
-  const [isplaying, setisplaying] = useState(false);
-  const [currentSong, setCurrentSong] = useState([]);
+  const [isplaying, setisplaying] = useState(true);
 
+  const [playing,changePlaying]=useState(0);
   const {currSong,setCurrSong,currPlaylist,setCurrPlaylist}=useContext(currSongContext);
 
+
   // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get(`/getAllSongs`);
-  //       setSongs(response.data);
-  //       setCurrentSong(response.data[0]);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
+  //   setisplaying(false);
+  //   setisplaying(true);
+
+  // }, [currSong,currPlaylist])
+  
 
   const audioElem = useRef();
 
@@ -36,34 +30,46 @@ const Player = (props) => {
   }, [isplaying]);
 
  useEffect(() => {
-    if (!currentSong) {
+    if (!currSong) {
       return;
     }
 
     const handleEnded = () => {
-      const index = songs.findIndex((x) => x.title === currentSong.title);
-      if (index === songs.length - 1) {
-        setCurrentSong(songs[0]);
-      } else {
-        setCurrentSong(songs[index + 1]);
+
+      if(currPlaylist.length > 0) {
+        const index = currPlaylist.findIndex((x) => x.title === currSong.title);
+        if (index === currPlaylist.length - 1) {
+          setCurrSong(currPlaylist[0]);
+          audioElem.current.currentTime = 0;
+          setisplaying(false)
+          setisplaying(true)
+        } else {
+          setCurrSong(currPlaylist[index + 1]);
+          audioElem.current.currentTime = 0;
+          setisplaying(false)
+          setisplaying(true)
+        }
+      }
+      else{
+        setCurrSong(null);
       }
     };
     const playNextSong = () => {
-      const index = songs.findIndex((x) => x.title === currentSong.title);
-      if (index === songs.length - 1) {
-        setCurrentSong(songs[0]);
+      const index = currPlaylist.findIndex((x) => x.title === currSong.title);
+      if (index === currPlaylist.length - 1) {
+        setCurrSong(currPlaylist[0]);
       } else {
-        setCurrentSong(songs[index + 1]);
+        setCurrSong(currPlaylist[index + 1]);
       }
       setisplaying(false);
     };
 
     const playPreviousSong = () => {
-      const index = songs.findIndex((x) => x.title === currentSong.title);
+      const index = currPlaylist.findIndex((x) => x.title === currSong.title);
       if (index === 0) {
-        setCurrentSong(songs[songs.length - 1]);
+        setCurrSong(currPlaylist[currPlaylist.length - 1]);
       } else {
-        setCurrentSong(songs[index - 1]);
+        setCurrSong(currPlaylist[index - 1]);
       }
       setisplaying(false);
     };
@@ -74,14 +80,14 @@ const Player = (props) => {
     return () => {
       audioElement.removeEventListener("ended", handleEnded);
     };
-  }, [currentSong, songs]);
+  }, [currSong, currPlaylist]);
 
   const onPlaying = () => {
     const duration = audioElem.current.duration;
     const ct = audioElem.current.currentTime;
 
-    setCurrentSong({
-      ...currentSong,
+    setCurrSong({
+      ...currSong,
       progress: (ct / duration) * 100,
       length: duration,
     });
@@ -89,21 +95,21 @@ const Player = (props) => {
 
   return (
     <>
-      {currentSong && (
-        <audio
-          src={currSong.song_url}
-          ref={audioElem}
-          onTimeUpdate={onPlaying}
-        />
-      )}
+      <audio
+        src={currSong.song_url}
+        ref={audioElem}
+        onTimeUpdate={onPlaying}
+      />
       <PlayerMain
-        songs={songs}
-        setSongs={setSongs}
+        songs={currPlaylist}
+        playing={playing}
+        changePlaying={changePlaying}
+        setSongs={setCurrPlaylist}
         isplaying={isplaying}
         setisplaying={setisplaying}
         audioElem={audioElem}
-        currentSong={currentSong}
-        setCurrentSong={setCurrentSong}
+        currentSong={currSong}
+        setCurrentSong={setCurrSong}
       />
     </>
   );
