@@ -1,17 +1,17 @@
 import * as faceapi from "face-api.js";
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./Detector.css";
 import axios from "axios";
 import PlaylistSection from "./PlaylistSection";
 
 function Detector() {
   const [modelsLoaded, setModelsLoaded] = React.useState(false);
-  const [emotions,setEmotions]=useState({
-    'emotion_type':"",
-    'emotion_dominance':null
+  const [emotions, setEmotions] = useState({
+    emotion_type: "",
+    emotion_dominance: null,
   });
 
-  const [emotionPlaylists,setEmotionPlaylists] = useState();
+  const [emotionPlaylists, setEmotionPlaylists] = useState();
   const [captureVideo, setCaptureVideo] = React.useState(false);
   const [isHandleVideoEnded, setIsHandleVideoEnded] = useState(false);
 
@@ -49,19 +49,20 @@ function Detector() {
   };
 
   const callForAPI = (emotions) => {
-    console.log(emotions)
-    axios.post('/getEmotionPlaylist',{"emotion":emotions.emotion_type}).then((res)=>{
-      setEmotionPlaylists(res.data);
-    });
-
-  }
+    console.log(emotions);
+    axios
+      .post("/getEmotionPlaylist", { emotion: emotions.emotion_type })
+      .then((res) => {
+        setEmotionPlaylists(res.data);
+      });
+  };
   React.useEffect(() => {
     if (isHandleVideoEnded && emotions.emotion_type !== "") {
       callForAPI(emotions);
     }
   }, [isHandleVideoEnded]);
 
-  const handleVideoOnPlay = async() => {
+  const handleVideoOnPlay = async () => {
     const interval = setInterval(async () => {
       if (canvasRef && canvasRef.current) {
         canvasRef.current.innerHTML = faceapi.createCanvasFromMedia(
@@ -89,13 +90,13 @@ function Detector() {
         // console.log(detections[0])
         const expressions = detections[0].expressions;
         const maxExpression = Math.max(...Object.values(expressions));
-        console.log(maxExpression)
+        console.log(maxExpression);
         const dominantEmotion = Object.keys(expressions).find(
           (key) => expressions[key] === maxExpression
         );
-        
-        setEmotions((prev)=>({...prev,emotion_dominance: maxExpression}));
-        setEmotions((prev)=>({...prev,emotion_type: dominantEmotion}));
+
+        setEmotions((prev) => ({ ...prev, emotion_dominance: maxExpression }));
+        setEmotions((prev) => ({ ...prev, emotion_type: dominantEmotion }));
 
         canvasRef &&
           canvasRef.current &&
@@ -124,7 +125,6 @@ function Detector() {
       closeWebcam();
       setIsHandleVideoEnded(true);
     }, 5000);
-
   };
 
   const closeWebcam = () => {
@@ -135,26 +135,48 @@ function Detector() {
 
   return (
     <div>
-      <div style={{ textAlign: "center", padding: "10px" }}>
-        {emotions.emotion_type!=="" && modelsLoaded && emotionPlaylists ? (
+      <div className="detector-inner">
+        <div className="detector-sub-div">
+          <h1>
+            <span className="animate-charcter" style={{ color: "green" }}>
+              AmplifAI
+            </span>{" "}
+            SPG
+          </h1>
+          <p>
+            Unlock the power of your emotions through music. Our cutting-edge
+            technology reads your facial expressions, decodes your emotions, and
+            creates a personalized playlist just for you. Experience a journey
+            where your face becomes the gateway to a world of melodies that
+            amplify your every mood. AmplifAI Sentiments Playlist Generator:{" "}
+            <br />
+            <em>Your emotions, elevated through music.</em>
+          </p>
+        </div>
+        <div className="detector-sub-div2">
+          <img src="/icons/face.png" alt="" width={550} height={550} />
+        </div>
+      </div>
+
+      <div className="webcamAccess">
+        {emotions.emotion_type !== "" && modelsLoaded && emotionPlaylists ? (
           <div className="playlist-middle">
-            <PlaylistSection playlist={emotionPlaylists}/>
+            <PlaylistSection playlist={emotionPlaylists} />
           </div>
         ) : (
           <>
-            <span className="webcam-text">
-              For this feature you have to
-            </span>
+            <span className="webcam-text">For this feature you have to</span>
             <button
               onClick={startVideo}
               className="button"
-              style={{backgroundColor:"green",border:"1px solid green"}}
+              style={{ backgroundColor: "green", border: "1px solid green" }}
             >
               Open Webcam
             </button>
           </>
         )}
       </div>
+
       {captureVideo ? (
         modelsLoaded ? (
           <div>

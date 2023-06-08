@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 import { RiSearchLine } from "react-icons/ri";
 import { AiOutlineBell } from "react-icons/ai";
-import { BiDownArrow } from "react-icons/bi";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import logo1 from "./play4.jpeg";
 import UserMenu from "../userMenu";
 import Search from "../../Search";
 
@@ -38,7 +35,6 @@ export default function TopHome() {
         song.artist_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         (song.album_num &&
           song.album_num.toLowerCase().includes(searchTerm.toLowerCase()))
-        // Add more search criteria here as needed
       );
     });
 
@@ -63,10 +59,7 @@ export default function TopHome() {
       <div className="middle_account_notify">
         <AiOutlineBell />
       </div>
-      {/*<Link to="/profile" className="account">
-        <img src={logo1} alt="" />
-        <span>Chetan Sharma</span>
-  </Link>*/}
+
       <div>
         <div className="account">
           <span
@@ -80,23 +73,8 @@ export default function TopHome() {
         </div>
       </div>
 
-      {/*<div className={`circle_icon ${showUserMenu}`}>
-        <div>
-          <div className="circle_icon">
-            <BiDownArrow />
-          </div>
-        </div>
-        </div>*/}
       {showModal && (
-        <div
-          // style={{
-          //   display: "flex",
-          //   alignItems: "center",
-          //   justifyContent: "center",
-          //   border: "1px solid white",
-          // }}
-          className="search-modal"
-        >
+        <div className="search-modal">
           <Search searchResults={searchResults} />
         </div>
       )}

@@ -1,6 +1,5 @@
 import React from "react";
 import { BsPlayFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
 
 export default function Playlist(props) {
   return (

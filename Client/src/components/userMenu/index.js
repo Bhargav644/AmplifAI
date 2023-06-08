@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import SettingPrivacy from "./SettingPrivacy";
-import HelpSupport from "./HelpSupport";
-import DisplayAccessibility from "./DisplayAccessibility";
 import logo1 from "../HomeMiddle/play4.jpeg";
 
 export default function UserMenu() {
-  const [visible, setVisible] = useState(0);
+  const [visible] = useState(0);
   return (
     <div className="mmenu">
       {visible === 0 && (

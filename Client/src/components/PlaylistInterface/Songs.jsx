@@ -29,7 +29,6 @@ function Songs(props) {
             <BiPlay
               style={{
                 fontSize: "35px",
-                // transition: "all linear 5s",
                 position: "absolute",
                 transform: "translate(-15px,-15px)",
               }}
@@ -72,7 +71,6 @@ function Songs(props) {
             <BiHeart
               style={{
                 fontSize: "20px",
-                // transition: "all linear 5s",
                 position: "absolute",
                 transform: "translate(-25px,-1px)",
               }}

@@ -10,11 +10,7 @@ const Player = (props) => {
   const { currSong, setCurrSong, currPlaylist, setCurrPlaylist } =
     useContext(currSongContext);
 
-  // useEffect(() => {
-  //   setisplaying(false);
-  //   setisplaying(true);
 
-  // }, [currSong,currPlaylist])
 
   const audioElem = useRef();
 

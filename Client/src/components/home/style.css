@@ -1,13 +1,8 @@
 .home {
   position: relative;
-  height: 100vh;
-  min-height: 100vh;
+  height: 80vh;
   background-color: black;
-  /* display: grid; */
-  /* grid-template-columns: repeat(3, 3fr); */
   overflow: auto;
-  /* Optional: add a padding to prevent content from being obscured by the scrollbar */
-  /* padding-right: 15px; */
 }
 
 @media screen and (max-width: 1015px) {
@@ -45,12 +40,10 @@
 @media screen and (max-width: 700px) {
   .home_middle {
     width: 90%;
-    /* left: 10% !important; */
   }
 }
 
 .player {
-  /* z-index: ; */
   position: fixed;
   bottom: 0;
   left: 0;

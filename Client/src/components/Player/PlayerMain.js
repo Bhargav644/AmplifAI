@@ -1,16 +1,13 @@
-import React, { useRef, useEffect, useState ,useCallback} from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import "./style.css";
 import {
   BsFillPlayCircleFill,
   BsFillPauseCircleFill,
   BsFillSkipStartCircleFill,
-  BsSkipEndCircleFill,
   BsFillSkipEndCircleFill,
   BsShuffle,
   BsRepeat,
 } from "react-icons/bs";
-import { BiRepeat } from "react-icons/bi";
-import { RiPlayListLine } from "react-icons/ri";
 
 const PlayerMain = ({
   audioElem,
@@ -20,7 +17,7 @@ const PlayerMain = ({
   setCurrentSong,
   songs,
   playing,
-  changePlaying
+  changePlaying,
 }) => {
   const [shuffleActive, setShuffleActive] = useState(false);
   const [repeat, setRepeat] = useState(false);
@@ -35,7 +32,6 @@ const PlayerMain = ({
     setCurrentSongIndex(songs.findIndex((x) => x.title === currentSong.title));
   }, [currentSong]);
 
-
   useEffect(() => {
     if (isplaying) {
       audioElem.current.play();
@@ -47,75 +43,37 @@ const PlayerMain = ({
   };
 
   const checkWidth = (time) => {
-    const bar =clickRef.current;
-    const clickPosition=time.clientX-bar.getBoundingClientRect().left;
-    const barWidth =bar.offsetWidth;
-    const clickPercentage = (clickPosition/barWidth)*100;
-    const newTime=(clickPercentage / 100) *audioElem.current.duration;
-    audioElem.current.currentTime=newTime;
+    const bar = clickRef.current;
+    const clickPosition = time.clientX - bar.getBoundingClientRect().left;
+    const barWidth = bar.offsetWidth;
+    const clickPercentage = (clickPosition / barWidth) * 100;
+    const newTime = (clickPercentage / 100) * audioElem.current.duration;
+    audioElem.current.currentTime = newTime;
   };
 
   const skipBack = () => {
-    // const currentIndex = player-1;
     let newIndex = playing - 1;
     if (newIndex < 0) {
       newIndex = songs.length - 1;
     }
-    changePlaying(newIndex)
+    changePlaying(newIndex);
     setCurrentSong(songs[newIndex]);
     audioElem.current.currentTime = 0;
   };
 
   const skiptoNext = () => {
-
-    if(songs.length==0){
-
-      setisplaying(true)
-      audioElem.current.currentTime=0;
+    if (songs.length == 0) {
+      setisplaying(true);
+      audioElem.current.currentTime = 0;
       return;
     }
-    let newIndex=playing+1;
-    if(newIndex>=songs.length){
-      newIndex=0;
+    let newIndex = playing + 1;
+    if (newIndex >= songs.length) {
+      newIndex = 0;
     }
     changePlaying(newIndex);
     setCurrentSong(songs[newIndex]);
     setisplaying(true);
-    
-    // let newIndex=currentSongIndex;
-    // if (shuffleActive) {
-    //   newIndex = Math.floor(Math.random() * songs.length);
-    // } else {
-    //   const currentIndex = currentSongIndex;
-    //   newIndex = currentSongIndex + 1;
-    //   if (newIndex >= songs.length) {
-    //     if (repeat) {
-    //       newIndex = 0;
-    //     } else {
-    //       newIndex = songs.length - 1;
-    //       setisplaying(false);
-    //       return;
-    //     }
-    //   }
-    // }
-
-    // // Check if audio element is ready to play next song
-    // if (audioElem.current.readyState >= 2) {
-    //   setCurrentSong(songs[newIndex]);
-    //   setCurrentSongIndex(newIndex); // Add this line
-    //   console.log(currentSongIndex);
-    //   audioElem.current.currentTime = 0;
-    //   setisplaying(true);
-    // } else {
-    //   // If not ready, wait for canplay event before updating state and playing next song
-    //   audioElem.current.addEventListener("canplay", () => {
-    //     setCurrentSong(songs[newIndex]);
-    //     setCurrentSongIndex(newIndex); // Add this line
-    //     audioElem.current.currentTime = 0;
-    //     setisplaying(true);
-    //     audioElem.current.removeEventListener("canplay", () => {});
-    //   });
-    // }
   };
 
   const toggleShuffle = () => {

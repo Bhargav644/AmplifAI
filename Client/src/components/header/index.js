@@ -1,27 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
-// import { BiMicrophone, BiLogOut } from "react-icons/bi";
 import {
   AiOutlineHeart,
   AiOutlineHome,
   AiOutlineSearch,
-  // AiOutlineDownload,
   AiOutlinePlus,
 } from "react-icons/ai";
-// import { HiArrowTrendingUp } from "react-icons/hi2";
 import { RiPlayListFill } from "react-icons/ri";
 import { MdWorkspacePremium } from "react-icons/md";
 import logo from "../../svg/musiclogo.png";
-import RightHome from "../rightHome";
-import { TfiHandPointLeft } from "react-icons/tfi";
 
 export default function Header(props) {
-  // const [showRightHome, setShowRightHome] = useState(false);
-
-  // const handleRightHomeToggle = () => {
-  //   setShowRightHome(!showRightHome);
-  // };
   return (
     <header>
       <div className="header_top">
@@ -44,10 +34,7 @@ export default function Header(props) {
           <AiOutlineHeart style={{ fontSize: "25px" }} />
         </Link>
         <Link className="middle_icon">
-          <RiPlayListFill
-            style={{ fontSize: "25px" }}
-            // onClick={handleRightHomeToggle}
-          />
+          <RiPlayListFill style={{ fontSize: "25px" }} />
         </Link>
         <Link to="/" className="middle_icon">
           <AiOutlinePlus style={{ fontSize: "25px" }} />
@@ -59,7 +46,6 @@ export default function Header(props) {
           />
         </Link>
       </div>
-      {/*{showRightHome && <RightHome />}*/}
     </header>
   );
 }
