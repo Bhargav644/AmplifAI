@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect,useContext} from "react";
+import { useRef, useState, useEffect, useContext } from "react";
 import PlayerMain from "./PlayerMain";
 import axios from "axios";
 import { currSongContext } from "../../App";
@@ -6,16 +6,15 @@ import { currSongContext } from "../../App";
 const Player = (props) => {
   const [isplaying, setisplaying] = useState(true);
 
-  const [playing,changePlaying]=useState(0);
-  const {currSong,setCurrSong,currPlaylist,setCurrPlaylist}=useContext(currSongContext);
-
+  const [playing, changePlaying] = useState(0);
+  const { currSong, setCurrSong, currPlaylist, setCurrPlaylist } =
+    useContext(currSongContext);
 
   // useEffect(() => {
   //   setisplaying(false);
   //   setisplaying(true);
 
   // }, [currSong,currPlaylist])
-  
 
   const audioElem = useRef();
 
@@ -29,28 +28,26 @@ const Player = (props) => {
     }
   }, [isplaying]);
 
- useEffect(() => {
+  useEffect(() => {
     if (!currSong) {
       return;
     }
 
     const handleEnded = () => {
-
-      if(currPlaylist.length > 0) {
+      if (currPlaylist.length > 0) {
         const index = currPlaylist.findIndex((x) => x.title === currSong.title);
         if (index === currPlaylist.length - 1) {
           setCurrSong(currPlaylist[0]);
           audioElem.current.currentTime = 0;
-          setisplaying(false)
-          setisplaying(true)
+          setisplaying(false);
+          setisplaying(true);
         } else {
           setCurrSong(currPlaylist[index + 1]);
           audioElem.current.currentTime = 0;
-          setisplaying(false)
-          setisplaying(true)
+          setisplaying(false);
+          setisplaying(true);
         }
-      }
-      else{
+      } else {
         setCurrSong(null);
       }
     };
@@ -95,11 +92,7 @@ const Player = (props) => {
 
   return (
     <>
-      <audio
-        src={currSong.song_url}
-        ref={audioElem}
-        onTimeUpdate={onPlaying}
-      />
+      <audio src={currSong.song_url} ref={audioElem} onTimeUpdate={onPlaying} />
       <PlayerMain
         songs={currPlaylist}
         playing={playing}

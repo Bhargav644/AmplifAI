@@ -67,21 +67,26 @@ export default function TopHome() {
         <img src={logo1} alt="" />
         <span>Chetan Sharma</span>
   </Link>*/}
-      <Link to="/credential" className="account">
-        <span>SingUp</span>
-      </Link>
       <div className={`circle_icon ${showUserMenu}`}>
-        <div
-          onClick={() => {
-            setShowUserMenu((prev) => !prev);
-          }}
-        >
+        <div className="account">
+          <span
+            onClick={() => {
+              setShowUserMenu((prev) => !prev);
+            }}
+          >
+            SingUp
+            {showUserMenu && <UserMenu />}
+          </span>
+        </div>
+      </div>
+
+      {/*<div className={`circle_icon ${showUserMenu}`}>
+        <div>
           <div className="circle_icon">
             <BiDownArrow />
           </div>
         </div>
-        {showUserMenu && <UserMenu />}
-      </div>
+        </div>*/}
       {showModal && (
         <div
           // style={{

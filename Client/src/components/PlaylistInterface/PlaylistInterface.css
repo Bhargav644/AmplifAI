@@ -3,20 +3,38 @@ body {
   background-color: black;
 }
 .plylist-interface {
-  padding-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .playlist-header {
   display: flex;
   background-color: black;
+  padding: 35px;
+  /* padding-bottom: 30px !; */
+  border-radius: 10px;
+}
+@media (max-width: 1253px) {
+  .playlist-header div:last-of-type {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+.playlist_header_inner {
+  padding: 25px;
 }
 .playlist-main {
-  width: 80%;
-  height: 80vh;
-  padding: 20px;
+  width: 85%;
+  /* height: 80vh; */
+  padding: 30px;
   position: absolute;
   left: 12%;
   background-color: black;
+}
+@media (max-width: 1155px) {
+  .playlist-main {
+    left: 12%;
+  }
 }
 .loader_div {
   /* display: flex; */
@@ -30,6 +48,7 @@ body {
 .playlist-img {
   width: 300px !important;
   height: 300px !important;
+  border-radius: 10px;
 }
 .playlist-tag {
   font-size: 18px;
@@ -40,7 +59,13 @@ body {
   font-weight: 800 !important;
   transform: translateX(20px);
 }
+.playlist-songs {
+  border-radius: 10px;
+  background-image: linear-gradient(to bottom, black, #1c1b1c);
 
+  margin-top: 10px;
+  margin-bottom: 60px;
+}
 /* .song-main {
   display: flex;
   height: 40px;
@@ -51,16 +76,65 @@ body {
 .songIMG {
   width: 50px !important;
   height: 50px !important;
+  border-radius: 5px;
 }
 table {
-  /* background-image: linear-gradient(to top, black, #1c1b1c);
-  background-image: linear-gradient(to bottom, black, #1c1b1c); */
-  /* border-collapse: collapse; */
+  /* background-image: linear-gradient(to bottom, black, #1c1b1c); */
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
+
+  border-collapse: collapse;
   border: none;
   width: 100%;
   /* padding: 12px 10px; */
 }
-th,
-td {
-  padding: 5px 8px;
+tr {
+  border-radius: 10px !important;
+  border: none !important;
+}
+thead tr:hover {
+  background-color: black;
+}
+thead {
+  border-bottom: 1px solid rgb(73, 73, 73);
+}
+.mood_playlist {
+  display: flex;
+  flex-direction: row;
+  padding-left: 25px;
+  align-items: center;
+}
+.mood_playlist button {
+  background: transparent;
+  border: none;
+  font-size: 35px;
+  height: 50px;
+  width: 50px;
+}
+.mood_playlist button:first-of-type {
+  background-color: green;
+  color: white;
+  font-size: 40px;
+  border-radius: 50%;
+}
+.song_title p:first-of-type {
+  font-size: 15px;
+}
+.song_title p:last-of-type {
+  color: gray;
+  font-size: 13px;
+}
+.album_name {
+  font-size: 14px;
+  color: lightgray;
+}
+.release_date {
+  font-size: 14px;
+}
+.duration {
+  font-size: 14px;
+}
+tr:hover {
+  background-color: rgba(255, 255, 255, 0.141);
 }
