@@ -34,7 +34,7 @@ export default function MainHome() {
         <>
           <div className="mainhome_heading">Recommended Playlists:</div>
             <div className="mainhome_out">
-            {Object.keys(playlist).map((key, idx) => {
+            {/* {Object.keys(playlist).map((key, idx) => {
             const list = playlist[key];
             if(list!==undefined || list.playlist_songs!==undefined) {
               return (
@@ -46,7 +46,7 @@ export default function MainHome() {
                 </Link>
               );
             }
-          })}
+          })} */}
             </div>
       </>
       )
