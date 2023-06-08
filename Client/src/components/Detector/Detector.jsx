@@ -93,7 +93,7 @@ function Detector() {
           detections,
           displaySize
         );
-        console.log(detections[0].expressions)
+        // console.log(detections[0].expressions)
         const expressions = detections[0].expressions;
         const maxExpression = Math.max(...Object.values(expressions));
         const dominantEmotion = Object.keys(expressions).find(
@@ -174,7 +174,7 @@ function Detector() {
       <div  className="webcamAccess">
         {emotions.emotion_type !== "" && modelsLoaded && emotionPlaylists ? (
           <div className="playlist-middle">
-            <PlaylistSection playlist={emotionPlaylists} />
+            <PlaylistSection emotion={emotions} playlist={emotionPlaylists} />
           </div>
         ) : (
           <div id="webcam-Access">
