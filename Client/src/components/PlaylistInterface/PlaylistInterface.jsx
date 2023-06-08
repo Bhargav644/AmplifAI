@@ -9,6 +9,7 @@ import Songs from "./Songs";
 import { currSongContext } from "../../App";
 import { BiTime } from "react-icons/bi";
 import  secureLocalStorage  from  "react-secure-storage";
+import { BsHeart, BsPlayFill } from "react-icons/bs";
 
 function PlaylistInterface() {
   const { id } = useParams();
@@ -52,10 +53,20 @@ function PlaylistInterface() {
                   src={songs.playlist_songs[0].image_link}
                 />
               </div>
-              <div>
+              <div className="playlist_header_inner">
                 <p className="playlist-tag">Public Playlist</p>
                 <br />
-                <a href="#" onClick={()=>runThePlaylist(songs.playlist_songs)} className="playlist-name">{songs.playlist_name}</a>
+                <p className="playlist-name">{songs.playlist_name}</p>
+                <br />
+                <div className="mood_playlist">
+                  <div className="mood_playlist_button">
+                    <button
+                      onClick={() => runThePlaylist(songs.playlist_songs)}
+                    >
+                      <BsPlayFill style={{ transform: "translateX(1.5px)" }} />
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="playlist-songs">
@@ -64,7 +75,7 @@ function PlaylistInterface() {
                   <tr style={{ textAlign: "left" }}>
                     <th>#</th>
                     <th>Song Name</th>
-                    <th>Artist Name</th>
+                    {/*<th>Artist Name</th>*/}
                     <th>Album Name</th>
                     <th>Release Date</th>
                     <th>
@@ -74,7 +85,12 @@ function PlaylistInterface() {
                 </thead>
                 <tbody>
                   {songs.playlist_songs.map((val, index) => (
-                    <Songs  runTheSong={runTheSong} song={val} id={index + 1} key={index} />
+                    <Songs
+                      runTheSong={runTheSong}
+                      song={val}
+                      id={index + 1}
+                      key={index}
+                    />
                   ))}
                 </tbody>
               </table>

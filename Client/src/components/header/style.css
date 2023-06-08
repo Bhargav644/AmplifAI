@@ -1,7 +1,7 @@
 header {
   position: fixed;
   top: 0;
-  height: 102vh;
+  height: 100%;
   /* border: 1px solid black; */
   width: 155px;
   background: #131313;
