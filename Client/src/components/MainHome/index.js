@@ -33,17 +33,21 @@ export default function MainHome() {
         <>
           <div className="mainhome_heading">Recommended Playlists:</div>
             <div className="mainhome_out">
-              {Object.keys(playlist).map((key, idx) => {
-                const list = playlist[key];
-                return (
-                  <Link to={`/playlist/${list._id}`}>
-                    <Playlist
-                      image={list.playlist_songs[0].image_link}
-                      tag={list.playlist_name}
-                    />
-                  </Link>
-                );
-              })}
+            {Object.keys(playlist).map((key, idx) => {
+            const list = playlist[key];
+            if (list.playlist_songs.length > 0) {
+              return (
+                <Link to={`/playlist/${list._id}`} key={key}>
+                  <Playlist
+                    image={list.playlist_songs[0].image_link}
+                    tag={list.playlist_name}
+                  />
+                </Link>
+              );
+            } else {
+              return null; // Skip rendering if the playlist has no songs
+            }
+          })}
             </div>
       </>
       )
