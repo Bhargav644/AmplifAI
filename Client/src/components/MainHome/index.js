@@ -35,6 +35,7 @@ export default function MainHome() {
             <div className="mainhome_out">
             {Object.keys(playlist).map((key, idx) => {
             const list = playlist[key];
+            if(list!==undefined) {
               return (
                 <Link to={`/playlist/${list._id}`} key={key}>
                   <Playlist
@@ -43,6 +44,7 @@ export default function MainHome() {
                   />
                 </Link>
               );
+            }
           })}
             </div>
       </>
