@@ -31,7 +31,10 @@ function PlaylistInterface() {
   };
 
   const runThePlaylist = (data) => {
+    // console.log(songs)
     setCurrPlaylist(data);
+
+    setCurrSong(data[0]);
   };
 
   return (
@@ -49,7 +52,7 @@ function PlaylistInterface() {
               <div>
                 <p className="playlist-tag">Public Playlist</p>
                 <br />
-                <p className="playlist-name">{songs.playlist_name}</p>
+                <a href="#" onClick={()=>runThePlaylist(songs.playlist_songs)} className="playlist-name">{songs.playlist_name}</a>
               </div>
             </div>
             <div className="playlist-songs">
@@ -68,7 +71,7 @@ function PlaylistInterface() {
                 </thead>
                 <tbody>
                   {songs.playlist_songs.map((val, index) => (
-                    <Songs song={val} id={index + 1} key={index} />
+                    <Songs runTheSong={runTheSong} song={val} id={index + 1} key={index} />
                   ))}
                 </tbody>
               </table>

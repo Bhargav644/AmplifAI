@@ -8,17 +8,43 @@ const extractMovie = (name) => {
   }
 };
 
-const generatePlaylist = (playlistName, songs) => {
-  const minLength = songs.length % 15;
-  const to_include = songs.slice(0, minLength);
+function generateRandomId() {
+  const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const idLength = 8;
+  let randomId = '';
 
-  console.log(playlistName);
-  const playlist = {
-    playlistName: extractMovie(playlistName),
-    songs: [...to_include],
-  };
-  return playlist;
+  for (let i = 0; i < idLength; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    randomId += characters.charAt(randomIndex);
+  }
+
+  return randomId;
+}
+
+const generatePlaylist = (playlistName, songs) => {
+  const playlists=[]
+  const numSets=Math.ceil(songs.length/10);
+
+  for(let i=0;i<numSets;i++) {
+    const startIdx=i*10;
+    const endIdx=startIdx+10;
+    const playlist_name=`${playlistName} ${i+1}`
+
+    const playlist_songs=songs.slice(startIdx, endIdx);
+    const _id = generateRandomId();
+    const currPlaylist={
+        _id: _id,
+        playlist_name: playlist_name,
+        playlist_songs:playlist_songs
+    }
+    playlists.push(currPlaylist);
+  }
+
+  return playlists;
 };
+
+
+
 
 module.exports = {
   generatePlaylist,

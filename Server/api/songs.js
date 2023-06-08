@@ -24,7 +24,7 @@ class SongsAPI {
   async getSongsByTag(keyword) {
     try {
       const tag_songs = await Songs.find({
-        tag: { $regex: songKeyword, $options: "i" },
+        tag: { $regex: keyword, $options: "i" },
       });
       return tag_songs;
     } catch (err) {

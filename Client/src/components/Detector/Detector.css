@@ -1,0 +1,70 @@
+* {
+  color: white;
+}
+.premium{
+  position: absolute;
+  left:10%;
+  width: 88vw;
+  cursor:default;
+}
+
+.premium-mid{
+  width:80%;
+  margin: auto;
+  height:400px;
+
+}
+
+.premium-heading{
+  font-size: 65px;
+  text-align: center;
+}
+
+.premium-text{
+  margin-top:2vw;
+  font-size: 25px;
+  text-align: center;
+}
+
+
+.premium-button{
+  text-align: center;
+}
+
+.button{
+  margin: 3vw 20px;
+  height: 50px;
+  width: 200px;
+  cursor: pointer;
+  color: white;
+  font-size: larger;
+  border-radius:25px;
+  border:2px solid white;
+  background-color: transparent;
+}
+
+.webcam-text{
+  font-size:25px;
+}
+
+.detector-div{
+  width:98vw;
+  left:10%;
+  text-align: center;
+  height: auto;
+  margin-bottom:20px;
+}
+
+.playlist-middle{
+  width: 75% !important;
+  /* top: 50px; */
+  position: absolute;
+  left: 17%;
+  text-align: left;
+  padding-bottom: 120px;
+}
+
+/* .canvas{
+  position: absolute;
+  border-radius: 25px !important;
+} */

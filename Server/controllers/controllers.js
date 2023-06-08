@@ -125,6 +125,21 @@ const getPlaylistById=async(req,res)=>{
       .json({ error: "An error occurred while retrieving playlists." });
   }
 }
+const getEmotionPlaylist=async(req,res)=>{
+  const emotion=req.body.emotion;
+
+  try{
+    const all_songs=await SongsAPI.getSongsByTag(emotion.toLowerCase());
+    const playlists=generatePlaylist(emotion.toUpperCase(),all_songs);
+    res.status(200).json(playlists);
+  }
+  catch(error){
+    res
+      .status(500)
+      .json({ error: "An error occurred while retrieving playlists." });
+  }
+
+}
 
 module.exports = {
   homeController: homeController,
@@ -135,4 +150,5 @@ module.exports = {
   allSongController: allSongController,
   allPlaylistController:allPlaylistController,
   getPlaylistById:getPlaylistById,
+  getEmotionPlaylist:getEmotionPlaylist,
 };
