@@ -14,6 +14,7 @@ export default function MainHome() {
       .get("/getPlaylist")
       .then((res) => {
         setPlaylist(res.data);
+        console.log(res.data);
         secureLocalStorage.setItem("playlists",JSON.stringify(res.data));
 
       })
@@ -35,7 +36,7 @@ export default function MainHome() {
             <div className="mainhome_out">
             {Object.keys(playlist).map((key, idx) => {
             const list = playlist[key];
-            if(list!==undefined) {
+            if(list!==undefined || list.playlist_songs!==undefined) {
               return (
                 <Link to={`/playlist/${list._id}`} key={key}>
                   <Playlist
