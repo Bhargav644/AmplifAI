@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "firebase": "^9.22.1",
+    "google-one-tap": "^1.0.6"
+  }
+}

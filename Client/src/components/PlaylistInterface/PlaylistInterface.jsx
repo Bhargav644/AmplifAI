@@ -10,10 +10,12 @@ import { currSongContext } from "../../App";
 import { BiTime } from "react-icons/bi";
 import  secureLocalStorage  from  "react-secure-storage";
 import { BsHeart, BsPlayFill } from "react-icons/bs";
+import { UserContext } from '../../App';
 
 function PlaylistInterface() {
   const { id } = useParams();
   const [songs, setSongs] = useState({});
+  const {user,setUser}=useContext(UserContext);
 
   const { currSong, setCurrSong, currPlaylist, setCurrPlaylist } =
     useContext(currSongContext);
@@ -43,7 +45,7 @@ function PlaylistInterface() {
   return (
     <>
       <div className="playlist-interface">
-        const img=
+
         {Object.keys(songs).length > 0 ? (
           <div className="playlist-main">
             <div className="playlist-header">
@@ -86,6 +88,7 @@ function PlaylistInterface() {
                 <tbody>
                   {songs.playlist_songs.map((val, index) => (
                     <Songs
+                      user={user}
                       runTheSong={runTheSong}
                       song={val}
                       id={index + 1}

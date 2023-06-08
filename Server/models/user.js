@@ -1,5 +1,5 @@
 const mongoose=require("../config/db");
-const songsSchema=require("./songs")[schema]
+const songsSchema=require("./songs")['schema']
 
 
 const userSchema=new mongoose.Schema({

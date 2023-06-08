@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Playlist from "../MainHome/Playlist";
+
 import axios from "axios";
 import "../MainHome/style.css"
 
 export default function PlaylistSection({playlist}) {
+
+
   console.log(playlist);
   return (
     <div className="mainhome_wrap">

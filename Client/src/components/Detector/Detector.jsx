@@ -49,14 +49,13 @@ function Detector() {
   };
 
   const callForAPI = (emotions) => {
-    console.log(emotions)
+    // console.log(emotions)
     axios.post('/getEmotionPlaylist',{"emotion":emotions.emotion_type}).then((res)=>{
       setEmotionPlaylists(res.data);
       const playlistInStorage=JSON.parse(secureLocalStorage.getItem('playlists'));
-      const values=Object.values(playlistInStorage);
-      values.slice(0,14);
-      values.push(...Object.values(res.data));
-      const updatedPlaylist=Object.assign({},values);
+      const list=Object.values(playlistInStorage);
+      list.push(...Object.values(res.data));
+      const updatedPlaylist=Object.assign({},list);
       secureLocalStorage.setItem('playlists',JSON.stringify(updatedPlaylist));
     });
 

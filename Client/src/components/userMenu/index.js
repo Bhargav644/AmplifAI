@@ -4,33 +4,36 @@ import SettingPrivacy from "./SettingPrivacy";
 import HelpSupport from "./HelpSupport";
 import DisplayAccessibility from "./DisplayAccessibility";
 import logo1 from "../HomeMiddle/play4.jpeg";
+import {auth,provider} from "../../config"
 
-export default function UserMenu() {
+export default function UserMenu({name,email,photoURL}) {
   const [visible, setVisible] = useState(0);
+  function signOut(){
+      auth.signOut();
+      window.location.reload();
+  }
+
   return (
     <div className="mmenu">
       {visible === 0 && (
         <div>
-          <Link to="/profile" className="mmenu_header hover3">
-            <img src={logo1} alt="" />
+          <div className="mmenu_header hover3">
+            <img src={photoURL} />
             <div className="mmenu_col">
-              <span>Chetan Sharma</span>
-              <span>See your profile</span>
+              <span>{name}</span>
+              <span style={{textOverflow:"ellipsis",overflow:"hidden",whiteSpace:"nowrap",display:"bloack",width:"150px"}}>{email}</span>
+            </div>
+          </div>
+          <div className="mmenu_splitter"></div>
+          <div className="mmenu_splitter"></div>
+          <Link to="/premium">
+            <div className="mmenu_item hover3">
+              <div className="small_circle"></div>
+              <span>Premium Feature </span>
+              <div className="rArrow"></div>
             </div>
           </Link>
-          <div className="mmenu_splitter"></div>
-          <div className="mmenu_splitter"></div>
-          <div className="mmenu_item hover3">
-            <div className="small_circle"></div>
-            <span>Account</span>
-            <div className="rArrow"></div>
-          </div>
-          <div className="mmenu_item hover3">
-            <div className="small_circle"></div>
-            <span>Premium Feature </span>
-            <div className="rArrow"></div>
-          </div>
-          <div className="mmenu_item hover3">
+          <div onClick={signOut} className="mmenu_item hover3">
             <div className="small_circle"></div>
             <span>Logout</span>
           </div>

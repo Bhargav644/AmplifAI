@@ -2,6 +2,7 @@ const Songs = require("../models/songs")["model"];
 const generatePlaylist = require("../api/helper")["generatePlaylist"];
 const SongsAPI=require("../api/songs");
 const Playlist = require("../models/playlist")['model'];
+const Users=require("../models/user")['model'];
 
 const homeController = (req, res) => {
   res.status(200).json({ message: "It's server" });
@@ -158,8 +159,7 @@ const getOneTapCredentials=async(req,res)=>{
                   "name":name,
                   "email":email,
                   "photoURL":picture,
-                  "follows":[],
-                  "followers":[],
+                  "likedSongs":[],
               })
               newUser.save().then(() => {
                   return res.sendStatus(201)
@@ -179,7 +179,6 @@ const getOneTapCredentials=async(req,res)=>{
 const getPopUpCredentials=async(req,res)=>{
 
   const { name,email,photoURL }=req.body;
-  console.log(req.body);
   try{    
           const user = await Users.findOne({ email:email });
           if (user===null) {
@@ -187,8 +186,7 @@ const getPopUpCredentials=async(req,res)=>{
                   "name":name,
                   "email":email,
                   "photoURL":photoURL,
-                  "follows":[],
-                  "followers":[],
+                  "likedSongs":[],
               })
               await newUser.save();
           }
@@ -201,6 +199,37 @@ const getPopUpCredentials=async(req,res)=>{
 
 }
 
+
+const addToLikedSongs=async(req,res)=>{
+
+  const {song_id,email}=req.body;
+  try{
+      const user=await Users.find({'email':email});
+      const song=await Songs.findById(song_id);
+      user[0].likedSongs.push(song);
+      await user[0].save();
+      res.status(200).json({ message: "Pushed" });
+  }
+  catch(err){
+    console.log(err);
+  }
+}
+
+const likedSongs=async(req,res)=>{
+
+  const {email}=req.body;
+  try{
+      const user=await Users.find({'email':email});
+      res.status(200).json({"data":user[0].likedSongs});
+  }
+  catch(err){
+    console.log(err);
+  }
+}
+
+
+
+
 module.exports = {
   homeController: homeController,
   songController: songController,
@@ -211,6 +240,8 @@ module.exports = {
   allPlaylistController:allPlaylistController,
   getPlaylistById:getPlaylistById,
   getEmotionPlaylist:getEmotionPlaylist,
-  getOneTapCredentials:getOneTapCredentials,
-  getOneTapCredentials:getPopUpCredentials,
+  getOneTapCredentials,
+  getPopUpCredentials,
+  addToLikedSongs,
+  likedSongs
 };

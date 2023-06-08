@@ -40,7 +40,7 @@ export default function Header(props) {
         <Link to="/" className="middle_icon">
           <AiOutlineSearch style={{ fontSize: "25px" }} />
         </Link>
-        <Link to="/" className="middle_icon">
+        <Link to="/likedSongs" className="middle_icon">
           <AiOutlineHeart style={{ fontSize: "25px" }} />
         </Link>
         <Link className="middle_icon">
