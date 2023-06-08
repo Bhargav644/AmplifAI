@@ -108,12 +108,11 @@
   text-overflow: ellipsis;
   /* box-shadow: 1.2px 1px 2px #828282; */
 }
-.account img {
-  width: 21px;
-  height: 21px;
+.account>img {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   /* border: 1px solid #b0b3b8; */
-  transform: translateX(-1px);
 }
 .account>span {
   transform: translateY(2px);
@@ -171,7 +170,7 @@
 .mmenu {
   padding: 0 0.3rem;
   position: absolute;
-  top: 197%;
+  top: 75%;
   right: -20px;
   width: 300px;
   border-radius: 10px;
@@ -327,14 +326,27 @@ table tr:first-of-type {
 }
 .mood_inner_search {
   border-radius: 10px;
-  height: 30vh;
-  background: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%),
-    var(--background-noise);
+  max-height: 300px;
+  width:80vw;
+  /* position: absolute; */
+  /* top:70% !important; */
+  overflow-y: scroll;
+  /* border: 3px solid white; */
+  box-shadow: 2px 2px 2px rgb(0, 128, 0),2px 2px 2px rgb(0, 128, 0),-2px 2px 2px rgb(0, 128, 0),-2px 2px 2px rgb(0, 128, 0);
+  border-top: none;
+  position: relative;
+  z-index: 200;
+  transition: all 0.2;
+}
+
+.mood_inner_search::-webkit-scrollbar{
+  width: 0 !important;
+  background-color: transparent;
 }
 
 .profile-image{
   width:35px;
   height:35px;
-  transform: translateY(-3px);
+  transform: translateY(0px);
   border-radius:50%;
 }

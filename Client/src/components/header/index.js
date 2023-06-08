@@ -43,15 +43,7 @@ export default function Header(props) {
         <Link to="/likedSongs" className="middle_icon">
           <AiOutlineHeart style={{ fontSize: "25px" }} />
         </Link>
-        <Link className="middle_icon">
-          <RiPlayListFill
-            style={{ fontSize: "25px" }}
-            // onClick={handleRightHomeToggle}
-          />
-        </Link>
-        <Link to="/" className="middle_icon">
-          <AiOutlinePlus style={{ fontSize: "25px" }} />
-        </Link>
+        
         <Link to="/premium" className="middle_icon" style={{}}>
           <MdWorkspacePremium
             className="middle_icon_animation"

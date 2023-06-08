@@ -8,6 +8,7 @@ import axios from "axios";
 import { UserContext } from '../../App';
 import UserMenu from "../userMenu";
 import Search from "../../Search";
+import { currSongContext } from "../../App";
 
 import {auth,provider} from "../../config"
 import {signInWithPopup} from "firebase/auth"
@@ -28,6 +29,8 @@ export default function TopHome() {
   const [showModal, setShowModal] = useState(false); // new state variable for modal
 
   const {user,setUser}=useContext(UserContext);
+  const { currSong, setCurrSong, currPlaylist, setCurrPlaylist } =
+    useContext(currSongContext);
 
   function handleGoogleSignIn(){
       signInWithPopup(auth,provider).then((data)=>{
@@ -51,6 +54,53 @@ export default function TopHome() {
           console.error(err);
       });
   }
+
+
+
+    // if(searchTerm!==""){
+
+       /** Applying Debouncing here */
+    const [debouncedValue, setDebouncedValue] = useState(searchTerm);
+    const [token, setToken] = useState("");
+       
+    const search=async (searchTerm)=>{
+         let cancelTokenSource =axios.CancelToken.source();
+         setToken(cancelTokenSource);
+
+         axios.post("/findSongs",{keyword:searchTerm},{ cancelToken: cancelTokenSource.token }).then(res=>{
+           const filteredSongs=res.data.result;
+           console.log(filteredSongs)
+           setSearchResults(filteredSongs);
+           setShowModal(
+             filteredSongs.length > 0 && filteredSongs.length <= 1 && searchTerm !== ""
+           );
+         }).catch(err=>{
+           console.log(err);
+         })
+    };
+
+
+    useEffect(() => {
+        const timer = setTimeout(() => setDebouncedValue(searchTerm), 500)
+
+        return () => clearTimeout(timer)
+    }, [searchTerm,500]);
+
+
+    useEffect(() => {
+
+      if(debouncedValue){
+        search(searchTerm);
+      }
+
+      return ()=>{
+      if(token){
+        token.cancel('Request canceled');
+      }}
+
+    },[debouncedValue]);
+    
+  
 
   useEffect(() => {
     auth.onAuthStateChanged((currUser)=>{
@@ -83,24 +133,9 @@ export default function TopHome() {
     })
 }, []);
 
-  const handleSearch = (event) => {
-    const searchTerm = event.target.value;
+  const handleSearch = async(event) => {
+    const  searchTerm= event.target.value;
     setSearchTerm(searchTerm);
-
-    const filteredSongs = songs.filter((song) => {
-      return (
-        song.song_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        song.artist_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (song.album_num &&
-          song.album_num.toLowerCase().includes(searchTerm.toLowerCase()))
-        // Add more search criteria here as needed
-      );
-    });
-
-    setSearchResults(filteredSongs);
-    setShowModal(
-      filteredSongs.length > 0 && filteredSongs.length <= 1 && searchTerm !== ""
-    );
   };
 
   return (
@@ -115,13 +150,7 @@ export default function TopHome() {
         />
         <RiSearchLine className="middle_input_icon" />
       </div>
-      <div className="middle_account_notify">
-        <AiOutlineBell />
-      </div>
-      {/*<Link to="/profile" className="account">
-        <img src={logo1} alt="" />
-        <span>Chetan Sharma</span>
-  </Link>*/}
+
       <div>
         <div className="account">
           {(user.name==="")?
@@ -142,24 +171,10 @@ export default function TopHome() {
         </div>
       </div>
 
-      {/*<div className={`circle_icon ${showUserMenu}`}>
-        <div>
-          <div className="circle_icon">
-            <BiDownArrow />
-          </div>
-        </div>
-        </div>*/}
-      {showModal && (
-        <div
-          // style={{
-          //   display: "flex",
-          //   alignItems: "center",
-          //   justifyContent: "center",
-          //   border: "1px solid white",
-          // }}
-          className="search-modal"
-        >
-          <Search searchResults={searchResults} />
+    <br/>
+      {searchResults.length!=0 && (
+        <div className="search-modal">
+          <Search user={user} currSong={currSong} setCurrSong={setCurrSong} searchResults={searchResults} setSearchResults={setSearchResults} />
         </div>
       )}
     </div>

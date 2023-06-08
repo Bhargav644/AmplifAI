@@ -9,7 +9,7 @@ import PlaylistInterface from "./components/PlaylistInterface/PlaylistInterface"
 import TopHome from "./components/HomeMiddle";
 import Search from "./Search";
 import Detector from "./components/Detector/Detector";
-import Login from "./components/Login/RegisterForm";
+
 import Premium from "./components/Detector/Premium";
 import LikedSongs from "./components/LikedSongs/LikedSongs";
 
