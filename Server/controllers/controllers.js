@@ -228,6 +228,27 @@ const likedSongs=async(req,res)=>{
 }
 
 
+const findSongs=async(req,res)=>{
+  const {keyword}=req.body;
+  const result=[];
+  try{
+    const songsyAlbum=await SongsAPI.getSongsByAlbum(keyword);
+    result.push(...songsyAlbum);
+    const songsByTag=await SongsAPI.getSongsByTag(keyword);
+    result.push(...(songsByTag.slice(0,6)));
+    const songsByArtist=await SongsAPI.getSongsByArtist(keyword);
+    result.push(...((songsByArtist.length<10)?songsByArtist:songsByArtist.slice(0,6)));
+    
+    const songsByAdditionalTag=await SongsAPI.getSongsByAdditonalTag(keyword);
+    result.push(...(songsByAdditionalTag.length<10?songsByAdditionalTag:songsByAdditionalTag.slice(0,6)));
+
+    res.status(200).json({result});
+  }
+  catch(err){
+    res.status(500).json({messaage:"error"});
+  }
+}
+
 
 
 module.exports = {
@@ -243,5 +264,6 @@ module.exports = {
   getOneTapCredentials,
   getPopUpCredentials,
   addToLikedSongs,
-  likedSongs
+  likedSongs,
+  findSongs
 };

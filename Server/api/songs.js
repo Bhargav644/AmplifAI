@@ -13,7 +13,7 @@ class SongsAPI {
   async getSongsByAlbum(keyword) {
     try {
       const album_songs = await Songs.find({
-        album_name: { $regex: albumKeyword, $options: "i" },
+        album_name: { $regex: keyword, $options: "i" },
       });
       return album_songs;
     } catch (err) {
@@ -25,6 +25,19 @@ class SongsAPI {
     try {
       const tag_songs = await Songs.find({
         tag: { $regex: keyword, $options: "i" },
+      });
+      return tag_songs;
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+
+  async getSongsByAdditonalTag(keyword) {
+    try {
+      const tag_songs = await Songs.find({
+        additional_tags: {
+          $elemMatch: { $regex: keyword, $options: 'i' }
+        }
       });
       return tag_songs;
     } catch (err) {

@@ -9,6 +9,7 @@ const getOneTapCredentials=controllers['getOneTapCredentials']
 const getPopUpCredentials=controllers['getPopUpCredentials'];
 const addToLikedSongs=controllers['addToLikedSongs'];
 const likedSongs=controllers['likedSongs'];
+const findSongs=controllers['findSongs'];
 
 function routes(){
 
@@ -18,6 +19,8 @@ function routes(){
     app.post("/api/google-popup-login", getPopUpCredentials);   
     app.post("/addToLikedSongs", addToLikedSongs);   
     app.post("/likedSongs", likedSongs);   
+    app.post("/findSongs", findSongs);   
+
 }
 
 
