@@ -35,6 +35,8 @@ function Detector() {
   }, []);
 
   const startVideo = () => {
+    document.getElementById("detector-inner").style.display="none";
+    // document.getElementById("webcamAccess").style.display="none";
     setCaptureVideo(true);
     navigator.mediaDevices
       .getUserMedia({ video: { width: 300 } })
@@ -147,7 +149,7 @@ function Detector() {
 
   return (
     <div>
-      <div className="detector-inner">
+      <div id="detector-inner" className="detector-inner">
         <div className="detector-sub-div">
           <h1>
             <span className="animate-charcter" style={{ color: "green" }}>
@@ -169,14 +171,13 @@ function Detector() {
           <img src="/icons/face.png" alt="" width={550} height={550} />
         </div>
       </div>
-
-      <div className="webcamAccess">
+      <div  className="webcamAccess">
         {emotions.emotion_type !== "" && modelsLoaded && emotionPlaylists ? (
           <div className="playlist-middle">
             <PlaylistSection playlist={emotionPlaylists} />
           </div>
         ) : (
-          <>
+          <div id="webcam-Access">
             <span className="webcam-text">For this feature you have to</span>
             <button
               onClick={startVideo}
@@ -185,9 +186,10 @@ function Detector() {
             >
               Open Webcam
             </button>
-          </>
+          </div>
         )}
       </div>
+
 
       {captureVideo ? (
         modelsLoaded ? (
