@@ -67,6 +67,13 @@ const PlayerMain = ({
   };
 
   const skiptoNext = () => {
+
+    if(songs.length==0){
+
+      setisplaying(true)
+      audioElem.current.currentTime=0;
+      return;
+    }
     let newIndex=playing+1;
     if(newIndex>=songs.length){
       newIndex=0;

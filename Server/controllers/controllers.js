@@ -130,7 +130,7 @@ const getEmotionPlaylist=async(req,res)=>{
 
   try{
     const all_songs=await SongsAPI.getSongsByTag(emotion.toLowerCase());
-    const playlists=generatePlaylist(emotion.toUpperCase(),all_songs);
+    const playlists=generatePlaylist(emotion.charAt(0).toUpperCase() + emotion.slice(1),all_songs);
     res.status(200).json(playlists);
   }
   catch(error){
