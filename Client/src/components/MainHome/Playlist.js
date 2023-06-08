@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 export default function Playlist(props) {
   return (
     <div className="play">
-      <Link style={{ background: "transparent", border: "none" }}>
-        <BsPlayFill className="play_icon" />
-      </Link>
+      <BsPlayFill className="play_icon" />
       <img src={props.image} alt="" />
       <div className="play_name">
         <p>{props.tag}</p>

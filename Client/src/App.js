@@ -49,8 +49,16 @@ function App() {
           <Route path="/" element={<Home currSong={currSong} />} exact />
           {/*<Route path="/player" element={<Player />} />*/}
 
-          <Route exact path="/premium" element={<Premium currSong={currSong} />} />
-          <Route exact path="/premium/detector" element={<Detector currSong={currSong} />} />
+          <Route
+            exact
+            path="/premium"
+            element={<Premium currSong={currSong} />}
+          />
+          <Route
+            exact
+            path="/premium/detector"
+            element={<Detector currSong={currSong} />}
+          />
           <Route
             path="/playlist/:id"
             element={<PlaylistInterface currSong={currSong} />}
