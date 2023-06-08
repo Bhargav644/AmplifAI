@@ -25,7 +25,7 @@ export default function MainHome() {
 
   return (
     <div className="mainhome_wrap">
-      {Object.keys(playlist).length==0?(
+      {(playlist=={} || Object.keys(playlist).length==0)?(
 
         <div className="loader_div">
             <Loader />
@@ -34,19 +34,19 @@ export default function MainHome() {
         <>
           <div className="mainhome_heading">Recommended Playlists:</div>
             <div className="mainhome_out">
-            {/* {Object.keys(playlist).map((key, idx) => {
-            const list = playlist[key];
-            if(list!==undefined || list.playlist_songs!==undefined) {
-              return (
-                <Link to={`/playlist/${list._id}`} key={key}>
-                  <Playlist
-                    image={list.playlist_songs[0].image_link}
-                    tag={list.playlist_name}
-                  />
-                </Link>
-              );
-            }
-          })} */}
+            {Object.keys(playlist).map((key, idx) => {
+              const list = playlist[key];
+              if(list!==undefined || list.playlist_songs!==undefined) {
+                return (
+                  <Link to={`/playlist/${list._id}`} key={key}>
+                    <Playlist
+                      image={list.playlist_songs[0].image_link}
+                      tag={list.playlist_name}
+                    />
+                  </Link>
+                );
+              }
+            })}
             </div>
       </>
       )
