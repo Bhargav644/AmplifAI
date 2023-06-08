@@ -141,6 +141,66 @@ const getEmotionPlaylist=async(req,res)=>{
 
 }
 
+
+const getOneTapCredentials=async(req,res)=>{
+  try{
+          const { token } = req.body;
+          const ticket = await client.verifyIdToken({
+              idToken: token,
+              audience: process.env.CLIENT_ID,
+          });
+      
+          const { name, email, picture } = ticket.getPayload();
+          
+          const user = await Users.findOne({ email:email });
+          if (user===null) {
+              const newUser=new Users({
+                  "name":name,
+                  "email":email,
+                  "photoURL":picture,
+                  "follows":[],
+                  "followers":[],
+              })
+              newUser.save().then(() => {
+                  return res.sendStatus(201)
+              }).catch(err => {
+                  if (err) return res.status(400).send({ message: 'Username already exists' });
+              })
+          }
+      
+          res.status(201).json({ name, email, picture });
+  }
+  catch(err){
+      // return res.sendStatus(500).json({ message: "Internal Server Error" });
+  }
+};
+
+
+const getPopUpCredentials=async(req,res)=>{
+
+  const { name,email,photoURL }=req.body;
+  console.log(req.body);
+  try{    
+          const user = await Users.findOne({ email:email });
+          if (user===null) {
+              const newUser=new Users({
+                  "name":name,
+                  "email":email,
+                  "photoURL":photoURL,
+                  "follows":[],
+                  "followers":[],
+              })
+              await newUser.save();
+          }
+      
+          res.status(201).json({ name, email, photoURL });
+  }
+  catch(err){
+      // return res.sendStatus(500).json({ message: "Internal Server Error" });
+  }
+
+}
+
 module.exports = {
   homeController: homeController,
   songController: songController,
@@ -151,4 +211,6 @@ module.exports = {
   allPlaylistController:allPlaylistController,
   getPlaylistById:getPlaylistById,
   getEmotionPlaylist:getEmotionPlaylist,
+  getOneTapCredentials:getOneTapCredentials,
+  getOneTapCredentials:getPopUpCredentials,
 };

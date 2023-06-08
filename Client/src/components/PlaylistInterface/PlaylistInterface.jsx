@@ -8,6 +8,7 @@ import Player from "../Player/Player";
 import Songs from "./Songs";
 import { currSongContext } from "../../App";
 import { BiTime } from "react-icons/bi";
+import  secureLocalStorage  from  "react-secure-storage";
 
 function PlaylistInterface() {
   const { id } = useParams();
@@ -17,13 +18,14 @@ function PlaylistInterface() {
     useContext(currSongContext);
 
   useEffect(() => {
-    axios
-      .get(`/getPlaylist/${id}`)
-      .then((res) => {
-        setSongs(res.data[0]);
-        console.log(res.data[0]);
-      })
-      .catch((err) => {});
+
+    const playlist=JSON.parse(secureLocalStorage.getItem("playlists"));
+    Object.keys(playlist).forEach((key)=>{
+      if(playlist[key]._id===id){
+        setSongs(playlist[key]);
+        return;
+      }
+    });
   }, []);
 
   const runTheSong = (data) => {
@@ -40,6 +42,7 @@ function PlaylistInterface() {
   return (
     <>
       <div className="playlist-interface">
+        const img=
         {Object.keys(songs).length > 0 ? (
           <div className="playlist-main">
             <div className="playlist-header">
@@ -71,7 +74,7 @@ function PlaylistInterface() {
                 </thead>
                 <tbody>
                   {songs.playlist_songs.map((val, index) => (
-                    <Songs runTheSong={runTheSong} song={val} id={index + 1} key={index} />
+                    <Songs  runTheSong={runTheSong} song={val} id={index + 1} key={index} />
                   ))}
                 </tbody>
               </table>

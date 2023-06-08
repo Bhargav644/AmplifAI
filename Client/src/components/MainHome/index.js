@@ -3,6 +3,8 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import Playlist from "./Playlist";
 import axios from "axios";
+import { encryptData,decryptData } from "../../helper/helper";
+import  secureLocalStorage  from  "react-secure-storage";
 
 export default function MainHome() {
   const [playlist, setPlaylist] = useState([]);
@@ -12,6 +14,8 @@ export default function MainHome() {
       .get("/getPlaylist")
       .then((res) => {
         setPlaylist(res.data);
+        secureLocalStorage.setItem("playlists",JSON.stringify(res.data));
+
       })
       .catch((err) => {
         console.log(err.message);

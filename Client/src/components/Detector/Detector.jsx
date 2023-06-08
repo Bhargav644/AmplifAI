@@ -3,7 +3,7 @@ import React,{useEffect, useState} from "react";
 import "./Detector.css";
 import axios from "axios";
 import PlaylistSection from "./PlaylistSection";
-
+import  secureLocalStorage  from  "react-secure-storage";
 function Detector() {
   const [modelsLoaded, setModelsLoaded] = React.useState(false);
   const [emotions,setEmotions]=useState({
@@ -52,6 +52,12 @@ function Detector() {
     console.log(emotions)
     axios.post('/getEmotionPlaylist',{"emotion":emotions.emotion_type}).then((res)=>{
       setEmotionPlaylists(res.data);
+      const playlistInStorage=JSON.parse(secureLocalStorage.getItem('playlists'));
+      const values=Object.values(playlistInStorage);
+      values.slice(0,14);
+      values.push(...Object.values(res.data));
+      const updatedPlaylist=Object.assign({},values);
+      secureLocalStorage.setItem('playlists',JSON.stringify(updatedPlaylist));
     });
 
   }
@@ -86,16 +92,23 @@ function Detector() {
           detections,
           displaySize
         );
-        // console.log(detections[0])
+        console.log(detections[0].expressions)
         const expressions = detections[0].expressions;
         const maxExpression = Math.max(...Object.values(expressions));
-        console.log(maxExpression)
         const dominantEmotion = Object.keys(expressions).find(
           (key) => expressions[key] === maxExpression
         );
         
+        if(dominantEmotion==="surprised") {
+          setEmotions((prev)=>({...prev,emotion_type:"surprise"}));
+        }
+        else if(dominantEmotion==="fearful"){
+          setEmotions((prev)=>({...prev,emotion_type:"fear"}));
+        }
+        else{
+          setEmotions((prev)=>({...prev,emotion_type: dominantEmotion}));
+        }
         setEmotions((prev)=>({...prev,emotion_dominance: maxExpression}));
-        setEmotions((prev)=>({...prev,emotion_type: dominantEmotion}));
 
         canvasRef &&
           canvasRef.current &&
@@ -123,7 +136,7 @@ function Detector() {
       clearInterval(interval);
       closeWebcam();
       setIsHandleVideoEnded(true);
-    }, 5000);
+    }, 4000);
 
   };
 
