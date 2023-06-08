@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo1 from "../HomeMiddle/play4.jpeg";
-import {auth,provider} from "../../config"
+import { auth, provider } from "../../config";
 
-export default function UserMenu({name,email,photoURL}) {
+export default function UserMenu({ name, email, photoURL }) {
   const [visible, setVisible] = useState(0);
-  function signOut(){
-      auth.signOut();
-      window.location.reload();
+  function signOut() {
+    auth.signOut();
+    window.location.reload();
   }
 
   return (
@@ -18,7 +18,17 @@ export default function UserMenu({name,email,photoURL}) {
             <img src={photoURL} />
             <div className="mmenu_col">
               <span>{name}</span>
-              <span style={{textOverflow:"ellipsis",overflow:"hidden",whiteSpace:"nowrap",display:"bloack",width:"150px"}}>{email}</span>
+              <span
+                style={{
+                  textOverflow: "ellipsis",
+                  overflow: "hidden",
+                  whiteSpace: "nowrap",
+                  display: "bloack",
+                  width: "150px",
+                }}
+              >
+                {email}
+              </span>
             </div>
           </div>
           <div className="mmenu_splitter"></div>
