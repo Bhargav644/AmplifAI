@@ -3,21 +3,21 @@ body {
   background-color: black;
 }
 .plylist-interface {
-  margin-bottom: 15px;
+  margin-bottom: 30px !important;
 }
 
 .playlist-header {
   display: flex;
+  justify-content: left;
+  align-items: center;
   background-color: black;
-  padding: 35px;
-  /* padding-bottom: 30px !; */
+  /* padding: 35px; */
+  padding-bottom: 30px;
   border-radius: 10px;
 }
-@media (max-width: 1253px) {
-  .playlist-header div:last-of-type {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+@media (max-width: 1043px) {
+  .playlist-name {
+    font-size: 50px !important;
   }
 }
 .playlist_header_inner {
@@ -28,7 +28,7 @@ body {
   /* height: 80vh; */
   padding: 30px;
   position: absolute;
-  left: 12%;
+  left: 10%;
   background-color: black;
 }
 @media (max-width: 1155px) {
@@ -61,7 +61,6 @@ body {
 }
 .playlist-songs {
   border-radius: 10px;
-  background-image: linear-gradient(to bottom, black, #1c1b1c);
 
   margin-top: 10px;
   margin-bottom: 60px;
@@ -83,15 +82,25 @@ table {
   /* display: flex; */
   /* justify-content: space-between; */
   /* align-items: center; */
+  /* position: absolute; */
+  background-image: linear-gradient(to bottom, black, #1c1b1c) !important;
 
   border-collapse: collapse;
   border: none;
-  width: 100%;
+  /* width: 100%; */
   /* padding: 12px 10px; */
 }
 tr {
   border-radius: 10px !important;
   border: none !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+td {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 thead tr:hover {
   background-color: black;
@@ -105,6 +114,12 @@ thead {
   padding-left: 25px;
   align-items: center;
 }
+.mood_playlist_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 .mood_playlist button {
   background: transparent;
   border: none;
@@ -117,6 +132,7 @@ thead {
   color: white;
   font-size: 40px;
   border-radius: 50%;
+  cursor: pointer;
 }
 .song_title p:first-of-type {
   font-size: 15px;

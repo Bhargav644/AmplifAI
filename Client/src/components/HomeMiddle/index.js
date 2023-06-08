@@ -122,7 +122,7 @@ export default function TopHome() {
         <img src={logo1} alt="" />
         <span>Chetan Sharma</span>
   </Link>*/}
-      <div className={`circle_icon ${showUserMenu}`}>
+      <div>
         <div className="account">
           {(user.name==="")?
           (

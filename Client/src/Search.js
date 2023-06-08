@@ -22,7 +22,9 @@ function Search({ searchResults }) {
             <tr style={{ textAlign: "left" }}>
               <th>#</th>
               <th>Song Name</th>
+              {/*<th>Artist Name</th>*/}
               <th>Album Name</th>
+              <th>Release Date</th>
               <th>
                 <BiTime />
               </th>

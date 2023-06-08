@@ -79,7 +79,7 @@
   width: 170px;
 }
 .play:hover .play_icon {
-  display: block;
+  display: inline;
   transition: all linear 3s;
 }
 .play_icon {
