@@ -2,17 +2,17 @@
     position: absolute;
     top: 45%;
     left:52%;
-    transform: translate(-30%,-30%);
+    transform: translate(-52%,-40%);
 }
 .limg{
-    width: 120px;
+    width: 100px;
     height:80px;
 }
 
 
 @media only screen and (max-width: 500px) { 
     .limg{
-        width: 70px;
+        width: 60px;
         height:50px;
     }
 }

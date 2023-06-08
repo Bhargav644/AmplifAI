@@ -2,6 +2,7 @@ const Songs = require("../models/songs")["model"];
 const generatePlaylist = require("../api/helper")["generatePlaylist"];
 const SongsAPI=require("../api/songs");
 const Playlist = require("../models/playlist")['model'];
+const Users=require("../models/user")['model'];
 
 const homeController = (req, res) => {
   res.status(200).json({ message: "It's server" });
@@ -141,6 +142,94 @@ const getEmotionPlaylist=async(req,res)=>{
 
 }
 
+
+const getOneTapCredentials=async(req,res)=>{
+  try{
+          const { token } = req.body;
+          const ticket = await client.verifyIdToken({
+              idToken: token,
+              audience: process.env.CLIENT_ID,
+          });
+      
+          const { name, email, picture } = ticket.getPayload();
+          
+          const user = await Users.findOne({ email:email });
+          if (user===null) {
+              const newUser=new Users({
+                  "name":name,
+                  "email":email,
+                  "photoURL":picture,
+                  "likedSongs":[],
+              })
+              newUser.save().then(() => {
+                  return res.sendStatus(201)
+              }).catch(err => {
+                  if (err) return res.status(400).send({ message: 'Username already exists' });
+              })
+          }
+      
+          res.status(201).json({ name, email, picture });
+  }
+  catch(err){
+      // return res.sendStatus(500).json({ message: "Internal Server Error" });
+  }
+};
+
+
+const getPopUpCredentials=async(req,res)=>{
+
+  const { name,email,photoURL }=req.body;
+  try{    
+          const user = await Users.findOne({ email:email });
+          if (user===null) {
+              const newUser=new Users({
+                  "name":name,
+                  "email":email,
+                  "photoURL":photoURL,
+                  "likedSongs":[],
+              })
+              await newUser.save();
+          }
+      
+          res.status(201).json({ name, email, photoURL });
+  }
+  catch(err){
+      // return res.sendStatus(500).json({ message: "Internal Server Error" });
+  }
+
+}
+
+
+const addToLikedSongs=async(req,res)=>{
+
+  const {song_id,email}=req.body;
+  try{
+      const user=await Users.find({'email':email});
+      const song=await Songs.findById(song_id);
+      user[0].likedSongs.push(song);
+      await user[0].save();
+      res.status(200).json({ message: "Pushed" });
+  }
+  catch(err){
+    console.log(err);
+  }
+}
+
+const likedSongs=async(req,res)=>{
+
+  const {email}=req.body;
+  try{
+      const user=await Users.find({'email':email});
+      res.status(200).json({"data":user[0].likedSongs});
+  }
+  catch(err){
+    console.log(err);
+  }
+}
+
+
+
+
 module.exports = {
   homeController: homeController,
   songController: songController,
@@ -151,4 +240,8 @@ module.exports = {
   allPlaylistController:allPlaylistController,
   getPlaylistById:getPlaylistById,
   getEmotionPlaylist:getEmotionPlaylist,
+  getOneTapCredentials,
+  getPopUpCredentials,
+  addToLikedSongs,
+  likedSongs
 };

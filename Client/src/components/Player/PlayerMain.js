@@ -62,9 +62,10 @@ const PlayerMain = ({
   };
 
   const skiptoNext = () => {
-    if (songs.length == 0) {
-      setisplaying(true);
-      audioElem.current.currentTime = 0;
+
+    if(songs.length==0){
+      setisplaying(true)
+      audioElem.current.currentTime=0;
       return;
     }
     let newIndex = playing + 1;
