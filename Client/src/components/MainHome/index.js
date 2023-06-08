@@ -7,7 +7,7 @@ import { encryptData,decryptData } from "../../helper/helper";
 import  secureLocalStorage  from  "react-secure-storage";
 import Loader from "../Loader/loader";
 export default function MainHome() {
-  const [playlist, setPlaylist] = useState([]);
+  const [playlist, setPlaylist] = useState({});
 
   useEffect(() => {
     axios
@@ -24,7 +24,7 @@ export default function MainHome() {
 
   return (
     <div className="mainhome_wrap">
-      {playlist.length==0?(
+      {Object.keys(playlist).length==0?(
 
         <div className="loader_div">
             <Loader />
