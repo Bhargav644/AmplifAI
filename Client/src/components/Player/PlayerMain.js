@@ -20,7 +20,7 @@ const PlayerMain = ({
   setCurrentSong,
   songs,
 }) => {
-  const [shuffleActive, setShuffleActive] = useState(true);
+  const [shuffleActive, setShuffleActive] = useState(false);
   const [repeat, setRepeat] = useState(false);
   const [currentSongIndex, setCurrentSongIndex] = useState(-1);
   const clickRef = useRef();
@@ -59,8 +59,10 @@ const PlayerMain = ({
 
   const skiptoNext = () => {
     let newIndex;
-    if (shuffleActive) {
+    console.log(songs)
+    if (!shuffleActive) {
       newIndex = Math.floor(Math.random() * songs.length);
+      console.log(newIndex);
     } else {
       const currentIndex = currentSongIndex;
       newIndex = currentIndex + 1;
@@ -68,7 +70,9 @@ const PlayerMain = ({
         if (repeat) {
           newIndex = 0;
         } else {
+          console.log(newIndex);
           newIndex = songs.length - 1;
+
           setisplaying(false);
           return;
         }
@@ -77,15 +81,15 @@ const PlayerMain = ({
     // Check if audio element is ready to play next song
     if (audioElem.current.readyState >= 2) {
       setCurrentSong(songs[newIndex]);
-      setCurrentSongIndex(newIndex); // Add this line
       audioElem.current.currentTime = 0;
+      setCurrentSongIndex(newIndex); // Move this line after setting the current song
       setisplaying(true);
     } else {
       // If not ready, wait for canplay event before updating state and playing next song
       audioElem.current.addEventListener("canplay", () => {
         setCurrentSong(songs[newIndex]);
-        setCurrentSongIndex(newIndex); // Add this line
-        audioElem.current.currentTime = 0;
+        audioElem.current.cxurrentTime = 0;
+        setCurrentSongIndex(newIndex); // Move this line after setting the current song
         setisplaying(true);
         audioElem.current.removeEventListener("canplay", () => {});
       });
